@@ -1,0 +1,51 @@
+# i3blocks config file
+# Last modification: 2016-08-05
+
+# command=/usr/local/libexec/i3blocks/$BLOCK_NAME
+command=$HOME/.dotfiles/i3/blocklets/$BLOCK_NAME
+separator_block_width=10
+markup=none
+interval=3
+separator=true
+# Colors:
+#	Blue      #5294e2
+#	White     #d3dae3
+#	Red       #e74c3c
+# No borders by default
+border_top=0
+border_left=0
+border_right=0
+border_bottom=0
+
+[cmus]
+signal=10
+
+[layout]
+label=
+interval=1
+
+[volume]
+format=json
+interval=once
+align=center
+signal=1
+
+[time_and_date]
+label=
+
+[weather]
+instance=novoazovsk
+interval=1800
+signal=2
+
+[menu]
+interval=once
+
+[i3_restart]
+interval=once
+
+[exit]
+interval=once
+background=#5294e2
+border=#d3dae3
+border_bottom=2

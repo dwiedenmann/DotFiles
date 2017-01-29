@@ -35,6 +35,7 @@
 #       * Interoperability      https://i3wm.org/docs/userguide.html#_i3_and_the_rest_of_your_software_world
 #
 #   Example Dotfiles
+#       * Github KabbAmine      https://github.com/KabbAmine/myDotFiles/blob/master/i3/config
 #       * Gist Diyan            https://gist.github.com/diyan/6192878
 #       * Reddit Post           https://www.reddit.com/r/i3wm/comments/3tdpkf/how_i_do_i3_a_how_to_of_sorts_my_config_included/
 #
@@ -47,6 +48,11 @@ set $mod 			Mod4
 set $execnsi        exec --no-startup-id
 set $innerGaps      25
 set $outerGaps      0
+set $border         0
+
+#set $i3             "$XDG_CONFIG_HOME/i3"
+set $i3             "$HOME/.config/i3"
+#set $scripts        "$HOME/.dotfiles/i3/scripts"
 
 ########################################################################################################################
 #   i3-gaps A fork of i3wm tiling window manager with more features, including gaps
@@ -54,6 +60,10 @@ set $outerGaps      0
 # set gaps
 gaps        inner   $innerGaps
 gaps        outer   $outerGaps
+
+# Gaps & borders only when we have more than 1 window
+#smart_gaps          on
+#smart_borders       on
 
 ########################################################################################################################
 # Basic Visual Config
@@ -65,6 +75,11 @@ font pango:SFNS Display 8, Terminus 8
 ########################################################################################################################
 
 ########################################################################################################################
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+x move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+x scratchpad show
 
 #######################################################################################################################
 # Custom Behavior for Programs
@@ -72,13 +87,44 @@ font pango:SFNS Display 8, Terminus 8
 # Assign applications to specific workspaces
 #assign [class="Iceweasel"] $wp1
 # if you want to kill all windows which have the class Firefox, use:
-bindsym $mod+x [class="Firefox"] kill
+#bindsym $mod+x [class="Firefox"] kill
+
+# kill focused window
+bindsym $mod+Shift+q            kill    
+
+# xkill
+bindsym --release Control+Shift+Escape exec xkill
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier   $mod
 new_float           none
 
+
+new_window pixel $border
+mouse_warping none
+
+# Window classes
+set $mail "^(Thunderbird)$"
+set $web "^(Firefox)$"
+set $dev "^(Gvim|Zeal)$"
+set $dl "^(qBittorrent)$"
+set $games "^(Mupen64Plus-Qt|supertux2|Hedgewars|info-mineshafter-Bootstrap|Minecraft|Minetest|Snes9x-gtk|mGBA|assaultcube)$"
+set $medis "^(Ghb|Puddletag|obs|Smtube|Shotcut|Simplescreenrecorder)$"
+set $graphics "^(Inkscape|Gimp|Agave)$"
+set $news "^(Liferea|Corebird)$"
+
+
 #new_window panel
+set $floating_windows   "^(Peek|Nitrogen|Yad|Xfce4-appfinder|Simplescreenrecorder|Smplayer|Blink)$"
+set $games              "^(Mupen64Plus-Qt|supertux2|Hedgewars|info-mineshafter-Bootstrap|Minecraft|Minetest|Snes9x-gtk|mGBA|assaultcube)"
+
+# Enable floating mode for some windows
+for_window [class=$floating_windows] floating enable
+
+for_window [window_type="notification"] floating enable; border none;
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
 
 # removes window titles from everything
 for_window  [class=".*"]        border pixel 0;  
@@ -111,8 +157,7 @@ for_window [class="Arista-gtk"] floating enable border pixel 2
 # Exec Bindings (i3 Related)
 ########################################################################################################################
 
-# kill focused window
-bindsym $mod+Shift+q            kill    
+
 # reload the configuration file
 bindsym $mod+Shift+c            reload  
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -134,7 +179,7 @@ bindsym $mod+d 			\
 #set     $rofiDark       "#14161F" 
 #set     $rofiLight      "#10E670"
 
-bindsym $mod+r exec --no-startup-id "~/.scripts/rofimenu"
+bindsym $mod+r $execnsi "~/.scripts/rofimenu"
 #bindsym $mod+r 	\
 #		$execnsi 	rofi 				\
 #					-show run      -separator-style 	none	\
@@ -144,11 +189,6 @@ bindsym $mod+r exec --no-startup-id "~/.scripts/rofimenu"
 #					-hlfg "$rofiDark"		-location 	0   	\
 #					-hlbg "$rofiLight"		-padding  	256 	\
 #					-bc   "$rofiDark" 	    -bw 		0
-
-#bindsym $mod+r exec rofi -show run -terminal termite -lines 3 -eh 2 -width 100 -padding 620 -opacity 90 -bw 0 -bc "#2f343f" -bg "#2f343f" -hlbg "#2f343f" -hlfg "#c79595" -fg "#95c7ae" -font "Terminus 24"	 
-# bindsym $mod+r 		exec rofi -show run -terminate urxvt -width 2560 -fg "#B0E670" -bg "#14161F" -hlfg "#B0E670" -hlbg "#14161F" -bc "#14161F" -location 0 -lines 19 -bw 0 -font "Terminus 12" -padding 70 -color-window "#14161F" "#14161F" "#14161F" -separator-style none -line-margin 3 -opacity 80
-#-color-normal "#72A2C2" "#C4CBD4" "#628292" "#4084D6" #F9F9F9 -color-active "#F2A2C2" "#C4CBD4" "#F28292" "#4084D6" #F9F9F9 
-#  -color-normal "argb:0383c4a" "#c4cbd4" "argb:96404552" "#4084d6" #f9f9f9 -color-urgent "argb:02d303b" "#cc6666" "argb:e52d303b" "#a54242" "#f9f9f9" -color-active "argb:02d303b" "#b5bd68" "argb:e42d303b" "#8c9440" "#f9f9f9" -color-window "argb:f22d303b" "#7c8389" "#1d1f21"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -202,9 +242,8 @@ bindsym $mod+Shift+space 		floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space 				focus 	mode_toggle	
 
-# focus the parent container
+# Focus the parent/child containers
 bindsym $mod+j 					focus 	parent		
-# focus the child container
 bindsym $mod+k                  focus   child       
 
 
@@ -216,6 +255,11 @@ bindsym 			Print 				workspace conky
 bindsym --release 	Print 	workspace 	back_and_forth
         
 # todo research named workspaces
+
+# Outputs (Monitors)
+set $monitor1 DP-0
+set $monitor2 HDMI-0
+set $monitor3 HDMI-1
 
 workspace   1   output  DP-0
 workspace   2   output  HDMI-0
@@ -257,13 +301,45 @@ bindsym $mod+Shift+9 	move container to 	workspace $ws9
 bindsym $mod+Shift+0 	move container to 	workspace $ws10
 
 
+# Move focused container to workspace & move to it
+#bindsym $mod+Shift+ampersand move container to workspace $ws_generic; workspace $ws_generic
+#bindsym $mod+Shift+eacute move container to workspace $ws_mail; workspace $ws_mail
+#bindsym $mod+Shift+quotedbl move container to workspace $ws_web; workspace $ws_web
+#bindsym $mod+Shift+apostrophe move container to workspace $ws_dev; workspace $ws_dev
+#bindsym $mod+Shift+5 move container to workspace $ws_chat; workspace $ws_chat
+#bindsym $mod+Shift+minus move container to workspace $ws_news; workspace $ws_news
+#bindsym $mod+Shift+egrave move container to workspace $ws_dl; workspace $ws_dl
+#bindsym $mod+Shift+underscore move container to workspace $ws_games; workspace $ws_games
+#bindsym $mod+Shift+ccedilla move container to workspace $ws_generic2; workspace $ws_generic2
+#bindsym $mod+Shift+agrave move container to workspace $ws_music; workspace $ws_music
+#bindsym $mod+Shift+F12 move container to workspace $ws_terminal; workspace $ws_terminal
+
+
+# Move the current workspace to the next output
+# (effectively toggles when you only have two outputs)
+bindsym $mod+asterisk move workspace to output right
+
+
 #######################################################################################################################
 # Modes
 #######################################################################################################################
 
-bindsym $mod+z          mode    "resize"
+#######################################################################################################################
+set $mode_move_ws Move workspace
+#######################################################################################################################
+#bindsym $mod+m mode "$mode_move_ws"
+mode "$mode_move_ws" {
+    #Move current workspace to different output
+    bindsym Left move workspace to output left
+    bindsym Escape mode "default"
+}
+
+#######################################################################################################################
+set $mode_resize Resize
+#######################################################################################################################
+bindsym $mod+z          mode    "$mode_resize"
 # resize window (you can also use the mouse for that)
-mode "resize" {
+mode "$mode_resize" {
     # These bindings trigger as soon as you enter the resize mode
     # Grow  : right, down
     # Shrink: left,  up
@@ -289,7 +365,11 @@ mode "resize" {
 	bindsym Tab    		mode 	"default"
 }
 
-mode "App launch" {
+#######################################################################################################################
+set $mode_app_launch App Launch
+#######################################################################################################################
+#bindsym $mod+Ctrl+l mode "$mode_app_launch"
+mode "$mode_app_launch" {
     bindsym p           exec pcmanfm
     bindsym f           exec firefox
 
@@ -298,37 +378,35 @@ mode "App launch" {
     bindsym Escape      mode    "default"
     bindsym Tab         mode    "default"
 }
-#bindsym $mod+Ctrl+l mode "App launch"
 
-mode "Move workspace" {
-#Move current workspace to different output
-bindsym Left move workspace to output left
-bindsym Escape mode "default"
+#######################################################################################################################
+set $mode_gaps Gaps: [t]rue, [f]alse
+#######################################################################################################################
+bindsym $mod+g mode "$mode_gaps"
+mode "$mode_gaps" {
+    bindsym t mode "default", gaps inner all set $gaps_inner, gaps outer all set $gaps_outer
+    bindsym f mode "default", gaps inner all set 1, gaps outer all set 1
+
+    bindsym $mod+g mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
-#bindsym $mod+m mode "Move workspace"
 
 #######################################################################################################################
 # Status Bar
 #######################################################################################################################
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-    colors {
-        # Whole color settings
-        background #000000
-        statusline #ffffff
-        separator  #666666
 
-        # Type             border  background font
-        focused_workspace  #008fff #007fff #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #aa0000 #990000 #ffffff
-    }
-        
-    status_command i3status
-    position top
-}
+# Colors
+set $bg             #383c4a
+set $bg_light       #444752
+set $sl             #d3dae3
+set $blue           #5294e2
+set $blue_light     #78a0cf
+set $red            #ce3a3a
+set $focused_txt    #f6f6f6
+set $inactive_txt   #9d9d9d
 
 # colors                BORDER      BACKGROUND TEXT        INDICATOR
 client.focused          $primary    $primary   $background $warning
@@ -336,12 +414,66 @@ client.focused_inactive $warning    $warning   $foreground $warning
 client.unfocused        $warning    $warning   $background $warning
 client.urgent           $gray       $gray      $foreground $gray  
 
+
+#######
+# I3BAR
+#######
+
+# Hide/show the bar
+bindsym $mod+shift+p bar mode toggle
+
+# Primary monitor
+bar {
+    # Enable rgba colors & transparency (i3-gaps)
+    i3bar_command   i3bar -t
+    output          $monitor1
+    position        top
+    height          24
+    status_command i3blocks -c $i3/i3bar_blocks
+    #status_command  i3status
+    position        top    
+    tray_output     $monitor1
+    tray_padding    3
+    colors {
+        background          $bg00
+        statusline          $sl00
+        separator           $inactive_txt00
+        focused_workspace   $blue00         $blueEE     $focused_txt
+        inactive_workspace  $bg_light00     $bg_light00 $inactive_txt
+        urgent_workspace    $red00          $redEE      $focused_txt
+    }
+}
+bar {
+    i3bar_command   i3bar -t
+    output          $monitor2
+    position        top
+    height          24
+    status_command  conky -c $i3/i3bar_conky
+    tray_output     none
+    colors {
+        background          $bg00
+        statusline          $sl00
+        separator           $inactive_txt00
+        focused_workspace   $blue00         $blueEE     $focused_txt
+        inactive_workspace  $bg_light00     $bg_light00 $inactive_txt
+        urgent_workspace    $red00          $redEE      $focused_txt
+    }
+}
+
+
+
 #######################################################################################################################
 #      Multimedia Controls
 # ▇ ▅ █ ▅ ▇ ▂ ▃ ▁ ▁ ▅ ▃ ▅ ▅ ▄ ▅ ▇
 #######################################################################################################################
 # view available controls with xmodmap -pke
 # Pulse Audio controls
+# Control volume with pactl
+#set $pactl_decrease exec pactl set-sink-volume 0 '-5%' && pkill -RTMIN+1 i3blocks
+#set $pactl_increase exec pactl set-sink-volume 0 '+5%' && pkill -RTMIN+1 i3blocks
+#set $pactl_mute     exec pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks
+
+
 # increase sound volume
 bindsym XF86AudioRaiseVolume    $execnsi    pactl 	  set-sink-volume 1 +2.5% 	 
 # decrease sound volume
@@ -364,10 +496,31 @@ bindsym XF86AudioPrev 		    $execnsi    mpc previous
 #######################################################################################################################
 # Program Statup
 #######################################################################################################################
+
+# Set resolution & monitors
+#exec_always --no-startup-id xrandr --output $monitor2 --mode 1280x1024 --pos 1366x0 --gamma 1.4:1.4:1.4 --brightness 1.1 --output $monitor1 --mode 1366x768 --pos 0x0
+
 $execnsi feh --randomize --bg-fill ~/.wallpapers/*
 $execnsi compton -b --config ~/.config/compton.conf
 $execnsi lxpolkit
+
+# Execute main terminal in $ws_terminal
+exec --no-startup-id i3-msg 'workspace $ws_terminal; exec $terminal'
+
+# Polkit agent
+#$execnsi /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+
+# Applications
+#$execnsi rofi
+#$execnsi clipit
 #$execnsi nm-applet
+#$execnsi xscreensaver -no-splash
+# exec_always numlockx
+
+# Set background
+#exec_always --no-startup-id nitrogen --restore
+
+
 
 #######################################################################################################################
 #   [-|\||) ()|= |_||\|[-
