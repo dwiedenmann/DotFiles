@@ -44,7 +44,8 @@
 ########################################################################################################################
 # Set Aliases 
 ########################################################################################################################
-set $mod 			Mod4	  
+set $mod 			Mod4
+set $alt            Mod1  
 set $execnsi        exec --no-startup-id
 set $innerGaps      25
 set $outerGaps      0
@@ -62,6 +63,9 @@ floating_modifier   $mod
 new_float           none
 mouse_warping       none
 new_window          pixel $border
+
+# removes window titles from everything
+for_window  [class=".*"]        border pixel 0;  
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.R
@@ -87,69 +91,84 @@ gaps        outer   $outerGaps
 # if you want to kill all windows which have the class Firefox, use:
 #bindsym $mod+x [class="Firefox"] kill
 
+# Workspaces
+set $ws_1generic        "1:Generic"
+set $ws_2generic        "2:Generic2"
+set $ws_3web            "3:Web"
+set $ws_5games          "8:Games"
+
+
+set $ws_4dev            "4:Dev"
+
+
+# Monitor 3
+set $ws_terminal        "3:Right"
+set $ws_dl              "3:Right"
+set $ws_music           "3:Right"
+
+# Social/Organizing ?
+set $ws_2mail           "2:Mail"
+set $ws_chat            "5:Chat"
+
+#set $ws_news            "6:News"
+
+
+
+
+
+
 # Window classes
 set $mail       "^(Thunderbird)$"
 set $web        "^(Firefox)$"
 set $dev        "^(Gvim|Zeal)$"
 set $dl         "^(qBittorrent)$"
-set $games      "^(Mupen64Plus-Qt|supertux2|Hedgewars|info-mineshafter-Bootstrap|Minecraft|Minetest|Snes9x-gtk|mGBA|assaultcube)$"
+set $games      "^(Steam|Mupen64Plus-Qt|supertux2|Hedgewars|net-minecraft-bootstrap-Bootstrap|info-mineshafter-Bootstrap|Minecraft|Minetest|Snes9x-gtk|mGBA|assaultcube)"
 set $medis      "^(Ghb|Puddletag|obs|Smtube|Shotcut|Simplescreenrecorder)$"
 set $graphics   "^(Inkscape|Gimp|Agave)$"
 set $news       "^(Liferea|Corebird)$"
 
+# Monitors for workspaces
+workspace $ws_games     output $monitor1
+workspace $ws_dev       output $monitor1
+workspace $ws_web       output $monitor1
+workspace $ws_generic   output $monitor1
+workspace $ws_generic2  output $monitor2
+workspace $ws_mail      output $monitor2
+workspace $ws_news      output $monitor2
+workspace $ws_terminal  output $monitor3
+workspace $ws_dl        output $monitor3
+workspace $ws_music     output $monitor3
 
-#new_window panel
-set $floating_windows   "^(Peek|Nitrogen|Yad|Xfce4-appfinder|Simplescreenrecorder|Smplayer|Blink)$"
-set $games              "^(Mupen64Plus-Qt|supertux2|Hedgewars|info-mineshafter-Bootstrap|Minecraft|Minetest|Snes9x-gtk|mGBA|assaultcube)"
-
-# Enable floating mode for some windows
-for_window [class=$floating_windows] floating enable
-
-for_window [window_type="notification"] floating enable; border none;
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-
-
-# removes window titles from everything
-for_window  [class=".*"]        border pixel 0;  
 
 # Open specific applications in floating mode
-for_window  [class="plank"]     floating enable,move absolute center 
-for_window  [instance="plank"]  floating enable,move absolute center 
-for_window  [class="Steam"]     floating enable
+set $floating_windows   "^(Transmission-gtk|plank|Mpv|Mpc|Vlc|(?i)virtualbox|Pamac-manager|Lxappearance|GParted|Galculator|File Transfer*|alsamixer|tty-clock|Clipgrab|Peek|Nitrogen|Yad|Xfce4-appfinder|Simplescreenrecorder|Smplayer|Blink)$"
+#set $floating_windows "^(Speedcrunch|Peek|Nitrogen|Yad|Xfce4-appfinder|Simplescreenrecorder|Smplayer|Blink)$"
+set $floating_types     "notification"
+set $floating_roles     "^(pop-up|task_dialog)"
+for_window [window_type=$floating_types]    floating enable
+for_window [window_role=$floating_roles]    floating enable
+for_window [class=$floating_windows]        floating enable
+for_window [title=$floating_windows]        floating enable
+
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 2
-for_window [title="tty-clock"] floating enable border pixel 2
-for_window [class="Clipgrab"] floating enable
-for_window [title="File Transfer*"] floating enable
-for_window [class="Galculator"] floating enable border pixel 2
-for_window [class="GParted"] floating enable border normal
-for_window [class="Lxappearance"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="net-minecraft-bootstrap-Bootstrap"] floating enable
-for_window [class="Minecraft 1.7.10"] floating enable
-for_window [class="Transmission-gtk"] floating enable
-for_window [class="Vlc"] floating enable border pixel 2
-for_window [class="Mpc"] floating enable border pixel 2
-for_window [class="Mpv"] floating enable border pixel 2
-for_window [class="Arista-gtk"] floating enable border pixel 2
+#for_window  [class="plank"]     floating enable,move absolute center 
+#for_window [class=""] floating enable
+
 
 ########################################################################################################################
 # Exec Bindings (i3 Related)
 ########################################################################################################################
 
 # Make the currently focused window a scratchpad
-bindsym $mod+Shift+x move scratchpad
+bindsym $mod+Shift+x        move scratchpad
 
 # Show the first scratchpad window
-bindsym $mod+x scratchpad show
+bindsym $mod+x              scratchpad show
 
 
 # kill focused window
-bindsym             $mod+Shift+q        kill    
+bindsym $mod+Shift+q        kill    
 
 # xkill
 bindsym --release Control+Shift+Escape  exec xkill
