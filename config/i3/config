@@ -1,0 +1,374 @@
+########################################################################################################################
+#       _ _____                     _____      
+#      (_)__  /   _________  ____  / __(_)___ _
+#     / / /_ <   / ___/ __ \/ __ \/ /_/ / __ `/
+#    / /___/ /  / /__/ /_/ / / / / __/ / /_/ / 
+#   /_//____/   \___/\____/_/ /_/_/ /_/\__, /  
+#                                     /____/   
+#   
+########################################################################################################################
+#
+#   i3-wm   An improved dynamic tiling window manager
+#    
+#       i3 was created because wmii, our favorite window manager at the time, didn’t provide
+#       some features we wanted (multi-monitor done right, for example), had some bugs,
+#       didn’t progress since quite some time and wasn’t easy to hack at all (source code
+#       comments/documentation completely lacking). Still, we think the wmii developers and
+#       contributors did a great job. Thank you for inspiring us to create i3.
+#
+#   Please see http://i3wm.org/docs/userguide.html for a complete reference!#
+#
+#   (¯`·._.·(¯`·._.·  Configuration by David Wiedenmann ·._.·´¯)·._.·´¯)
+#
+########################################################################################################################
+#
+#   References
+#
+#   i3 User’s Guide             https://i3wm.org/docs/userguide.html
+#       * Key bindings          https://i3wm.org/docs/userguide.html#_default_keybindings
+#       * Using i3              https://i3wm.org/docs/userguide.html#_using_i3
+#       * Tree                  https://i3wm.org/docs/userguide.html#_tree
+#       * Configuring i3        https://i3wm.org/docs/userguide.html#configuring
+#       * Configuring i3bar     https://i3wm.org/docs/userguide.html#_configuring_i3bar
+#       * List of commands      https://i3wm.org/docs/userguide.html#_list_of_commands
+#       * Multiple monitors     https://i3wm.org/docs/userguide.html#multi_monitor
+#       * Interoperability      https://i3wm.org/docs/userguide.html#_i3_and_the_rest_of_your_software_world
+#
+#   Example Dotfiles
+#       * Gist Diyan            https://gist.github.com/diyan/6192878
+#       * Reddit Post           https://www.reddit.com/r/i3wm/comments/3tdpkf/how_i_do_i3_a_how_to_of_sorts_my_config_included/
+#
+########################################################################################################################
+
+########################################################################################################################
+# Set Aliases 
+########################################################################################################################
+set $mod 			Mod4	  
+set $execnsi        exec --no-startup-id
+set $innerGaps      25
+set $outerGaps      0
+
+########################################################################################################################
+#   i3-gaps A fork of i3wm tiling window manager with more features, including gaps
+########################################################################################################################
+# set gaps
+gaps        inner   $innerGaps
+gaps        outer   $outerGaps
+
+########################################################################################################################
+# Basic Visual Config
+########################################################################################################################
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.R
+font pango:SFNS Display 8, Terminus 8
+
+########################################################################################################################
+
+########################################################################################################################
+
+#######################################################################################################################
+# Custom Behavior for Programs
+#######################################################################################################################
+# Assign applications to specific workspaces
+#assign [class="Iceweasel"] $wp1
+# if you want to kill all windows which have the class Firefox, use:
+bindsym $mod+x [class="Firefox"] kill
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier   $mod
+new_float           none
+
+#new_window panel
+
+# removes window titles from everything
+for_window  [class=".*"]        border pixel 0;  
+
+# Open specific applications in floating mode
+for_window  [class="plank"]     floating enable,move absolute center 
+for_window  [instance="plank"]  floating enable,move absolute center 
+for_window  [class="Steam"]     floating enable
+
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 2
+for_window [title="tty-clock"] floating enable border pixel 2
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="Galculator"] floating enable border pixel 2
+for_window [class="GParted"] floating enable border normal
+for_window [class="Lxappearance"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="net-minecraft-bootstrap-Bootstrap"] floating enable
+for_window [class="Minecraft 1.7.10"] floating enable
+for_window [class="Transmission-gtk"] floating enable
+for_window [class="Vlc"] floating enable border pixel 2
+for_window [class="Mpc"] floating enable border pixel 2
+for_window [class="Mpv"] floating enable border pixel 2
+for_window [class="Arista-gtk"] floating enable border pixel 2
+
+########################################################################################################################
+# Exec Bindings (i3 Related)
+########################################################################################################################
+
+# kill focused window
+bindsym $mod+Shift+q            kill    
+# reload the configuration file
+bindsym $mod+Shift+c            reload  
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r            restart 
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e                    \
+    $execnsi "i3-nagbar -t warning -m   \
+    'You pressed the exit shortcut. Do you really want to exit i3?  \
+    This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Scroll_Lock $execnsi    DISPLAY=:0.0 feh --randomize --bg-fill ~/.wallpapers/*
+# start a terminal
+bindsym $mod+Return 	 $execnsi 	i3-sensible-terminal	
+# lock screen
+bindsym $mod+Ctrl+l 	 $execnsi 	"~/.scripts/i3lock/i3lock.sh"	
+# start dmenu (a program launcher)
+bindsym $mod+d 			\
+		$execnsi 	dmenu_run -fn "SFNS Display 12"			
+#set     $rofiDark       "#14161F" 
+#set     $rofiLight      "#10E670"
+
+bindsym $mod+r exec --no-startup-id "~/.scripts/rofimenu"
+#bindsym $mod+r 	\
+#		$execnsi 	rofi 				\
+#					-show run      -separator-style 	none	\
+#					-font "SFNS Display 16" -width 		1980 	\
+#					-fg   "$rofiLight" 	    -lines 		19		\
+#					-bg   "$rofiDark" 	    -opacity 	80		\
+#					-hlfg "$rofiDark"		-location 	0   	\
+#					-hlbg "$rofiLight"		-padding  	256 	\
+#					-bc   "$rofiDark" 	    -bw 		0
+
+#bindsym $mod+r exec rofi -show run -terminal termite -lines 3 -eh 2 -width 100 -padding 620 -opacity 90 -bw 0 -bc "#2f343f" -bg "#2f343f" -hlbg "#2f343f" -hlfg "#c79595" -fg "#95c7ae" -font "Terminus 24"	 
+# bindsym $mod+r 		exec rofi -show run -terminate urxvt -width 2560 -fg "#B0E670" -bg "#14161F" -hlfg "#B0E670" -hlbg "#14161F" -bc "#14161F" -location 0 -lines 19 -bw 0 -font "Terminus 12" -padding 70 -color-window "#14161F" "#14161F" "#14161F" -separator-style none -line-margin 3 -opacity 80
+#-color-normal "#72A2C2" "#C4CBD4" "#628292" "#4084D6" #F9F9F9 -color-active "#F2A2C2" "#C4CBD4" "#F28292" "#4084D6" #F9F9F9 
+#  -color-normal "argb:0383c4a" "#c4cbd4" "argb:96404552" "#4084d6" #f9f9f9 -color-urgent "argb:02d303b" "#cc6666" "argb:e52d303b" "#a54242" "#f9f9f9" -color-active "argb:02d303b" "#b5bd68" "argb:e42d303b" "#8c9440" "#f9f9f9" -color-window "argb:f22d303b" "#7c8389" "#1d1f21"
+
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+########################################################################################################################
+# Change Focus
+########################################################################################################################
+# change focus
+#bindsym $mod+j 					focus 	left
+#bindsym $mod+k 					focus 	down
+#bindsym $mod+l 					focus 	up
+#bindsym $mod+semicolon 			focus 	right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left 				focus 	left
+bindsym $mod+Down 				focus 	down
+bindsym $mod+Up 				focus 	up
+bindsym $mod+Right 				focus 	right
+
+########################################################################################################################
+# Move Window
+########################################################################################################################
+# move focused window
+#bindsym $mod+Shift+j 			move 	left
+#bindsym $mod+Shift+k 			move 	down
+#bindsym $mod+Shift+l 			move 	up
+#bindsym $mod+Shift+semicolon 	move 	right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left 		move 	left
+bindsym $mod+Shift+Down 		move 	down
+bindsym $mod+Shift+Up 			move 	up
+bindsym $mod+Shift+Right 		move 	right
+
+# split in horizontal orientation
+bindsym $mod+h 					split 	h 			
+# split in vertical orientation
+bindsym $mod+v 					split 	v 			
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f 					fullscreen toggle 	
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s 					layout 	stacking
+bindsym $mod+w 					layout 	tabbed
+bindsym $mod+e 					layout 	toggle split
+# toggle tiling / floating
+bindsym $mod+Shift+space 		floating toggle 	
+# change focus between tiling / floating windows
+bindsym $mod+space 				focus 	mode_toggle	
+
+# focus the parent container
+bindsym $mod+j 					focus 	parent		
+# focus the child container
+bindsym $mod+k                  focus   child       
+
+
+#######################################################################################################################
+# Workspace
+#######################################################################################################################
+# show desktop when hitting Print
+bindsym 			Print 				workspace conky
+bindsym --release 	Print 	workspace 	back_and_forth
+        
+# todo research named workspaces
+
+workspace   1   output  DP-0
+workspace   2   output  HDMI-0
+workspace   3   output  HDMI-1
+
+set $ws1    1
+set $ws2    2
+set $ws3    3
+set $ws4    4
+set $ws5    5
+set $ws6    6
+set $ws7    7
+set $ws8    8
+set $ws9    9
+set $ws10   10
+
+# move to workspace
+bindsym $mod+1 								workspace $ws1
+bindsym $mod+2 								workspace $ws2
+bindsym $mod+3 								workspace $ws3
+bindsym $mod+4 								workspace $ws4
+bindsym $mod+5 								workspace $ws5
+bindsym $mod+6 								workspace $ws6
+bindsym $mod+7 								workspace $ws7
+bindsym $mod+8 								workspace $ws8
+bindsym $mod+9 								workspace $ws9
+bindsym $mod+0 								workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 	move container to 	workspace $ws1
+bindsym $mod+Shift+2 	move container to 	workspace $ws2
+bindsym $mod+Shift+3 	move container to 	workspace $ws3
+bindsym $mod+Shift+4 	move container to 	workspace $ws4
+bindsym $mod+Shift+5 	move container to 	workspace $ws5
+bindsym $mod+Shift+6 	move container to 	workspace $ws6
+bindsym $mod+Shift+7 	move container to 	workspace $ws7
+bindsym $mod+Shift+8 	move container to 	workspace $ws8
+bindsym $mod+Shift+9 	move container to 	workspace $ws9
+bindsym $mod+Shift+0 	move container to 	workspace $ws10
+
+
+#######################################################################################################################
+# Modes
+#######################################################################################################################
+
+bindsym $mod+z          mode    "resize"
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+    # Grow  : right, down
+    # Shrink: left,  up
+    bindsym n 			resize 	shrink 	width   1 px or  1 ppt
+    bindsym u 			resize 	grow 	height  1 px or  1 ppt
+    bindsym e 			resize 	shrink 	height  1 px or  1 ppt
+   	bindsym i 			resize 	grow 	width   1 px or  1 ppt
+
+    bindsym j 			resize 	shrink 	width  10 px or 10 ppt
+    bindsym k 			resize 	grow 	height 10 px or 10 ppt
+    bindsym l 			resize 	shrink 	height 10 px or 10 ppt
+    bindsym semicolon 	resize 	grow 	width  10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left 		resize 	shrink 	width  10 px or 10 ppt
+    bindsym Down 		resize 	grow 	height 10 px or 10 ppt
+    bindsym Up 			resize 	shrink 	height 10 px or 10 ppt
+    bindsym Right 		resize 	grow 	width  10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return 		mode 	"default"
+    bindsym Escape 		mode 	"default"
+	bindsym Tab    		mode 	"default"
+}
+
+mode "App launch" {
+    bindsym p           exec pcmanfm
+    bindsym f           exec firefox
+
+    # back to normal: Enter or Escape
+    bindsym Return      mode    "default"
+    bindsym Escape      mode    "default"
+    bindsym Tab         mode    "default"
+}
+#bindsym $mod+Ctrl+l mode "App launch"
+
+mode "Move workspace" {
+#Move current workspace to different output
+bindsym Left move workspace to output left
+bindsym Escape mode "default"
+}
+#bindsym $mod+m mode "Move workspace"
+
+#######################################################################################################################
+# Status Bar
+#######################################################################################################################
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    colors {
+        # Whole color settings
+        background #000000
+        statusline #ffffff
+        separator  #666666
+
+        # Type             border  background font
+        focused_workspace  #008fff #007fff #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #aa0000 #990000 #ffffff
+    }
+        
+    status_command i3status
+    position top
+}
+
+# colors                BORDER      BACKGROUND TEXT        INDICATOR
+client.focused          $primary    $primary   $background $warning
+client.focused_inactive $warning    $warning   $foreground $warning
+client.unfocused        $warning    $warning   $background $warning
+client.urgent           $gray       $gray      $foreground $gray  
+
+#######################################################################################################################
+#      Multimedia Controls
+# ▇ ▅ █ ▅ ▇ ▂ ▃ ▁ ▁ ▅ ▃ ▅ ▅ ▄ ▅ ▇
+#######################################################################################################################
+# view available controls with xmodmap -pke
+# Pulse Audio controls
+# increase sound volume
+bindsym XF86AudioRaiseVolume    $execnsi    pactl 	  set-sink-volume 1 +2.5% 	 
+# decrease sound volume
+bindsym XF86AudioLowerVolume    $execnsi    pactl 	  set-sink-volume 1 -2.5% 	 
+# mute sound
+bindsym XF86AudioMute 		    $execnsi    pactl 	  set-sink-mute   1 toggle 
+# Media player controls
+bindsym XF86AudioPlay 		    $execnsi    mpc play
+bindsym XF86AudioPause 		    $execnsi    mpc pause
+bindsym XF86AudioNext 		    $execnsi    mpc next
+bindsym XF86AudioPrev 		    $execnsi    mpc previous
+#bindsym XF86AudioPlay           $execnsi    playerctl play
+#bindsym XF86AudioPause          $execnsi    playerctl pause
+#bindsym XF86AudioNext           $execnsi    playerctl next
+#bindsym XF86AudioPrev           $execnsi    playerctl previous
+
+# really cool stuff here 
+# https://gist.github.com/diyan/6192878
+
+#######################################################################################################################
+# Program Statup
+#######################################################################################################################
+$execnsi feh --randomize --bg-fill ~/.wallpapers/*
+$execnsi compton -b --config ~/.config/compton.conf
+$execnsi lxpolkit
+#$execnsi nm-applet
+
+#######################################################################################################################
+#   [-|\||) ()|= |_||\|[-
+#######################################################################################################################

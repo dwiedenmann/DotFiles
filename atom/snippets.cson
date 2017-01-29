@@ -1,0 +1,81 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it here:
+# https://github.com/bevry/cson#what-is-cson
+#
+# Specific formatting details for snippets for TextMate
+# are found here
+# https://manual.macromates.com/en/snippets
+
+"basic-customization":1
+
+'*':
+    'Object Key':
+        'prefix': ':'
+        'body': "${1:key}: ${2:value}${3:,}$4"
+
+".source.python":
+    "Import":
+        "prefix": "im"
+        "body": "import ${1:package/module}"
+
+    "Main Top":
+        "prefix": "maint"
+        "body": "def main():\n    "
+
+    "Main Bottom":
+        "prefix": "mainb"
+        "body": "if __name__ == '__main__':\n    main()"
+
+	'Create New Odoo Object':
+		'prefix': 'oo_object'
+		'body': """
+			class ${10:NewModule}(models.Model):
+				_name = '${20:module.name}'
+				_rec_name = '${30:module.rec_name}' # optional
+				_description = '${40:Module description}'
+				_order = '${50:field1}, ${60:field2}, ' # optional
+				name = fields.Char()$70
+		"""
+
+'.source.java':
+    'class':
+        'prefix':'class'
+        'body':"""/**
+* ${1:classname}
+*
+* @author   David Wiedenmann
+* @version  1.0
+* @since    `date +%Y-%m-%d`
+* @since    {new Date().toISOString()}
+* @since    {datetime = new Date(); datetime.getFullYear()}-{(datetime.getMonth()+1)}-{datetime.getDate()} {datetime.getHours()}:{datetime.getMinutes()}
+*/
+public ${1:classname}{
+    /**
+    * Constructor
+    */
+    public void ${1:classname}(){
+
+    }
+}
+      """
