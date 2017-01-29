@@ -1,0 +1,78 @@
+#!/bin/sh
+# UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity. -Dennis Ritchie
+########################################################################################################################
+#                               _____ __                         _____      
+#        _  ______  _________  / __(_) /__     _________  ____  / __(_)___ _
+#       | |/_/ __ \/ ___/ __ \/ /_/ / / _ \   / ___/ __ \/ __ \/ /_/ / __ `/
+#    _ _>  </ /_/ / /  / /_/ / __/ / /  __/  / /__/ /_/ / / / / __/ / /_/ / 
+#   (_)_/|_/ .___/_/   \____/_/ /_/_/\___/   \___/\____/_/ /_/_/ /_/\__, /  
+#         /_/                                                      /____/   
+#
+########################################################################################################################
+# 
+#   	An xprofile file, ~/.xprofile and /etc/xprofile, allows you to execute commands at the
+#   	beginning of the X user session - before the window manager is started.  The xprofile
+#   	file is similar in style to xinitrc.
+#   
+########################################################################################################################
+#
+#   References
+#
+#   Arch wiki 					https://wiki.archlinux.org/index.php/xprofile
+#
+#   Example Dotfiles
+#		* github / kelsin		https://gist.github.com/kelsin/9460845
+#
+########################################################################################################################
+
+########################################################################################################################
+# Multimonitor Support
+########################################################################################################################
+xrandr --output DP-0   --primary            # Make this primary
+xrandr --output HDMI-0 --left-of DP-0       # Left Monitor
+xrandr --output HDMI-1 --right-of DP-0      # Right Monitor
+xrandr --output HDMI-1 --rotate left        # Rotate into Portrait Mode
+
+########################################################################################################################
+# Startup Applications
+########################################################################################################################
+feh --randomize --bg-fill ~/.wallpapers/*	# Load wallpaper
+lxpolkit&									# Load Policy Kit
+
+# Launch Compton
+# copied from .xinitrc because that file isn't working
+XDG_CONFIG_HOME="~/.config"
+composite=$XDG_CONFIG_HOME/compton.conf
+if [ -f "$composite" ]; then
+	compton -b --config "$composite"
+fi
+
+########################################################################################################################
+# Need to review
+########################################################################################################################
+
+# ENV Variables
+#export PATH="$HOME/.cabal/bin:$HOME/bin:$PATH"
+
+# X Settings
+#xrdb -load ~/.Xresources
+#xsetroot -cursor_name left_ptr
+#xmodmap ~/.Xmodmap
+
+# No Beep
+#xset b 0
+
+# Hide Mouse Pointer
+#unclutter -idle 2 -jitter 10 &
+
+# Background
+#sh ~/.fehbg
+
+# Urxvt daemon
+#urxvtd -q -o -f
+
+
+
+########################################################################################################################
+#	[-|\||) ()|= |_||\|[-
+########################################################################################################################

@@ -1,0 +1,7 @@
+[user]
+	email = david.wiedenmann@gmail.com
+	name = David Wiedenmann
+[push]
+	default = simple
+[color]
+	ui = auto
