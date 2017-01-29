@@ -52,7 +52,20 @@ set $border         0
 
 #set $i3             "$XDG_CONFIG_HOME/i3"
 set $i3             "$HOME/.config/i3"
+
+########################################################################################################################
+# Basic Visual Config
+########################################################################################################################
 #set $scripts        "$HOME/.dotfiles/i3/scripts"
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier   $mod
+new_float           none
+mouse_warping       none
+new_window          pixel $border
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.R
+font                pango:SFNS Display 8, Terminus 8
 
 ########################################################################################################################
 #   i3-gaps A fork of i3wm tiling window manager with more features, including gaps
@@ -65,21 +78,6 @@ gaps        outer   $outerGaps
 #smart_gaps          on
 #smart_borders       on
 
-########################################################################################################################
-# Basic Visual Config
-########################################################################################################################
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.R
-font pango:SFNS Display 8, Terminus 8
-
-########################################################################################################################
-
-########################################################################################################################
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+x move scratchpad
-
-# Show the first scratchpad window
-bindsym $mod+x scratchpad show
 
 #######################################################################################################################
 # Custom Behavior for Programs
@@ -89,29 +87,15 @@ bindsym $mod+x scratchpad show
 # if you want to kill all windows which have the class Firefox, use:
 #bindsym $mod+x [class="Firefox"] kill
 
-# kill focused window
-bindsym $mod+Shift+q            kill    
-
-# xkill
-bindsym --release Control+Shift+Escape exec xkill
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier   $mod
-new_float           none
-
-
-new_window pixel $border
-mouse_warping none
-
 # Window classes
-set $mail "^(Thunderbird)$"
-set $web "^(Firefox)$"
-set $dev "^(Gvim|Zeal)$"
-set $dl "^(qBittorrent)$"
-set $games "^(Mupen64Plus-Qt|supertux2|Hedgewars|info-mineshafter-Bootstrap|Minecraft|Minetest|Snes9x-gtk|mGBA|assaultcube)$"
-set $medis "^(Ghb|Puddletag|obs|Smtube|Shotcut|Simplescreenrecorder)$"
-set $graphics "^(Inkscape|Gimp|Agave)$"
-set $news "^(Liferea|Corebird)$"
+set $mail       "^(Thunderbird)$"
+set $web        "^(Firefox)$"
+set $dev        "^(Gvim|Zeal)$"
+set $dl         "^(qBittorrent)$"
+set $games      "^(Mupen64Plus-Qt|supertux2|Hedgewars|info-mineshafter-Bootstrap|Minecraft|Minetest|Snes9x-gtk|mGBA|assaultcube)$"
+set $medis      "^(Ghb|Puddletag|obs|Smtube|Shotcut|Simplescreenrecorder)$"
+set $graphics   "^(Inkscape|Gimp|Agave)$"
+set $news       "^(Liferea|Corebird)$"
 
 
 #new_window panel
@@ -157,6 +141,18 @@ for_window [class="Arista-gtk"] floating enable border pixel 2
 # Exec Bindings (i3 Related)
 ########################################################################################################################
 
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+x move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+x scratchpad show
+
+
+# kill focused window
+bindsym             $mod+Shift+q        kill    
+
+# xkill
+bindsym --release Control+Shift+Escape  exec xkill
 
 # reload the configuration file
 bindsym $mod+Shift+c            reload  
@@ -176,19 +172,9 @@ bindsym $mod+Ctrl+l 	 $execnsi 	"~/.scripts/i3lock/i3lock.sh"
 # start dmenu (a program launcher)
 bindsym $mod+d 			\
 		$execnsi 	dmenu_run -fn "SFNS Display 12"			
-#set     $rofiDark       "#14161F" 
-#set     $rofiLight      "#10E670"
 
-bindsym $mod+r $execnsi "~/.scripts/rofimenu"
-#bindsym $mod+r 	\
-#		$execnsi 	rofi 				\
-#					-show run      -separator-style 	none	\
-#					-font "SFNS Display 16" -width 		1980 	\
-#					-fg   "$rofiLight" 	    -lines 		19		\
-#					-bg   "$rofiDark" 	    -opacity 	80		\
-#					-hlfg "$rofiDark"		-location 	0   	\
-#					-hlbg "$rofiLight"		-padding  	256 	\
-#					-bc   "$rofiDark" 	    -bw 		0
+bindsym $mod+r          $execnsi "$HOME/.scripts/rofimenu"
+
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -261,9 +247,9 @@ set $monitor1 DP-0
 set $monitor2 HDMI-0
 set $monitor3 HDMI-1
 
-workspace   1   output  DP-0
-workspace   2   output  HDMI-0
-workspace   3   output  HDMI-1
+#workspace   1   output  DP-0
+#workspace   2   output  HDMI-0
+#workspace   3   output  HDMI-1
 
 set $ws1    1
 set $ws2    2
@@ -324,9 +310,9 @@ bindsym $mod+asterisk move workspace to output right
 # Modes
 #######################################################################################################################
 
-#######################################################################################################################
+##################################################
 set $mode_move_ws Move workspace
-#######################################################################################################################
+##################################################
 #bindsym $mod+m mode "$mode_move_ws"
 mode "$mode_move_ws" {
     #Move current workspace to different output
@@ -334,9 +320,9 @@ mode "$mode_move_ws" {
     bindsym Escape mode "default"
 }
 
-#######################################################################################################################
+##################################################
 set $mode_resize Resize
-#######################################################################################################################
+##################################################
 bindsym $mod+z          mode    "$mode_resize"
 # resize window (you can also use the mouse for that)
 mode "$mode_resize" {
@@ -365,9 +351,9 @@ mode "$mode_resize" {
 	bindsym Tab    		mode 	"default"
 }
 
-#######################################################################################################################
+##################################################
 set $mode_app_launch App Launch
-#######################################################################################################################
+##################################################
 #bindsym $mod+Ctrl+l mode "$mode_app_launch"
 mode "$mode_app_launch" {
     bindsym p           exec pcmanfm
@@ -379,9 +365,9 @@ mode "$mode_app_launch" {
     bindsym Tab         mode    "default"
 }
 
-#######################################################################################################################
+##################################################
 set $mode_gaps Gaps: [t]rue, [f]alse
-#######################################################################################################################
+##################################################
 bindsym $mod+g mode "$mode_gaps"
 mode "$mode_gaps" {
     bindsym t mode "default", gaps inner all set $gaps_inner, gaps outer all set $gaps_outer
@@ -429,7 +415,7 @@ bar {
     output          $monitor1
     position        top
     height          24
-    status_command i3blocks -c $i3/i3bar_blocks
+    status_command  i3blocks -c "$i3/i3bar_blocks"
     #status_command  i3status
     position        top    
     tray_output     $monitor1
@@ -448,7 +434,7 @@ bar {
     output          $monitor2
     position        top
     height          24
-    status_command  conky -c $i3/i3bar_conky
+    status_command  conky -c "$i3/i3bar_conky"
     tray_output     none
     colors {
         background          $bg00
