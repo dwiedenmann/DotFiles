@@ -12,11 +12,11 @@
   core:
     telemetryConsent: "no"
     themes: [
-      "one-dark-ui"
-      "monokai-seti"
+      "atom-material-ui"
+      "solarized-dark-syntax"
     ]
   editor:
-    fontSize: 22
+    fontSize: 23
   "exception-reporting":
     userId: "eef5ee5e-8390-e87d-4011-dee333f9409f"
   linter:

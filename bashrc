@@ -304,7 +304,7 @@ fi
  
 
  #archey3
- neofetch2
+ neofetch
 
 # ANSI Color -- use these variables to easily have different color
 #    and format output. Make sure to output the reset sequence after 
@@ -456,8 +456,6 @@ export PS1="\u@\h:\w\\$\[$(tput sgr0)\]"
 #######################################################################################################################
 
 # figlet -f slant "Hello World" | lolcat
-
-xrdb -merge ~/dotfiles/X11/colors/monokai_monokai
 
 fortune | lolcat
 

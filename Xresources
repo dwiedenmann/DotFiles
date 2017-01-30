@@ -1,18 +1,10 @@
-/*
 !======================================================================================================================
-!        _  __ ____                                                ___   
-!       | |/ // __ \___  _________  __  _______________  _____    ( _ )  
-!       |   // /_/ / _ \/ ___/ __ \/ / / / ___/ ___/ _ \/ ___/   / __ \/|
-!    _ /   |/ _, _/  __(__  ) /_/ / /_/ / /  / /__/  __(__  )   / /_/  < 
-!   (_)_/|_/_/ |_|\___/____/\____/\__,_/_/   \___/\___/____/    \____/\/ 
-!                                                                       
-!        _  __    __     ____            ____                            _____      
-!       | |/ /___/ /__  / __/___ ___  __/ / /______    _________  ____  / __(_)___ _
-!       |   / __  / _ \/ /_/ __ `/ / / / / __/ ___/   / ___/ __ \/ __ \/ /_/ / __ `/
-!    _ /   / /_/ /  __/ __/ /_/ / /_/ / / /_(__  )   / /__/ /_/ / / / / __/ / /_/ / 
-!   (_)_/|_\__,_/\___/_/  \__,_/\__,_/_/\__/____/    \___/\____/_/ /_/_/ /_/\__, /  
-!                                                                          /____/   
-!
+!      _  __    ____                                           
+!     | |/ /   / __ \___  _________  __  _______________  _____
+!     |   /   / /_/ / _ \/ ___/ __ \/ / / / ___/ ___/ _ \/ ___/
+!    /   |   / _, _/  __(__  ) /_/ / /_/ / /  / /__/  __(__  ) 
+!   /_/|_|  /_/ |_|\___/____/\____/\__,_/_/   \___/\___/____/  
+!   
 !======================================================================================================================
 !
 !	X Resources Configuration file
@@ -35,221 +27,60 @@
 !
 !----------------------------------------------------------------------------------------------------------------------
 
-/=====================================================================================================================
-! Includes
-! To use different files for each application, use #include in the main file. For example:
-! #include ".Xresources.d/xterm"
-! #include ".Xresources.d/rxvt-unicode"
-! #include ".Xresources.d/fonts"
-! #include ".Xresources.d/xscreensaver"
+!=====================================================================================================================
+! Basic syntax
 !----------------------------------------------------------------------------------------------------------------------
-*/
-
-
-
-!======================================================================================================================
-! XFT Settings
-!----------------------------------------------------------------------------------------------------------------------
-Xft.antialias: 				true
-Xft.rgba: 					rgba
-Xft.dpi: 					96
-
-Xft.autohint: 				0
-Xft.lcdfilter:  			lcddefault
-Xft.hinting: 				true
-Xft.hintstyle:  			hintslight
-
-
-!======================================================================================================================
-! URxvt settings
-! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
-! More info at:
-! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
-!----------------------------------------------------------------------------------------------------------------------
-
-
-!===================
-! Fonts
-!-------------------
-URxvt.font: 				xft:Hack-Regular For Powerline:pixelsize=14,xft:Symbola
-URxvt.boldFont:     		xft:Hack-Bold For Powerline:pixelsize=14:weight=bold,xft:Symbola
-URxvt.italicFont:   		xft:Hack-RegularOblique For Powerline:pixelsize=14:slant=italic,xft:Symbola
-!URxvt*font: 				xft:Terminus For Powerline:pixelsize=14:slant=italic,xft:Symbola
-!URxvt*boldFont: 			xft:Terminus For Powerline:pixelsize=14:slant=italic,xft:Symbola
-!URxvt.font: 				-*-terminus-medium-*-*-*-*-140-*-*-*-*-iso8859-1
-!URxvt.font: 				xft:DejaVu Sans Mono:pixelsize=12
-
-URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,matcher,tabbed
-URxvt.url-select.launcher:  google-chrome-stable
-URxvt.url-select.underline: true
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
-
-
-URxvt*.depth:             	32
-!URxvt*.geometry:          	90x30
-!URxvt*.background:	    	[80]#000000
-URxvt*.background:          rgba:1111/1111/1822/dddd
-!URxvt*.transparent:        true 
-!URxvt*.fading:             15
-!URxvt.urgentOnBell:       	true
-!URxvt.visualBell:         	true
-URxvt.loginShell:           true
-URxvt*.saveLines:           5000
-!URxvt.internalBorder:     	3
-URxvt.lineSpace:            0
-
-
-!======================================================================================================================
-! Colors
-!----------------------------------------------------------------------------------------------------------------------
-
-! special
-!*.foreground:   #deded6
-!*.background:   #121417
-!*.cursorColor:  #deded6
-
-! black
-!*.color0:       #2b3135
-!*.color8:       #4c5356
-
-! red
-!*.color1:       #8fa1b3
-!*.color9:       #8fa1b3
-
-! green
-!*.color2:       #769070
-!*.color10:      #769070
-
-! yellow
-!*.color3:       #4f5b66
-!*.color11:      #4f5b66
-
-! blue
-!*.color4:       #607a86
-!*.color12:      #607a86
-
-! magenta
-!*.color5:       #80757e
-!*.color13:      #80757e
-
-! cyan
-!*.color6:       #60867f
-!*.color14:      #60867f
-
-! white
-!*.color7:       #deded6
-!*.color15:      #deded6
-
-
-
-!======================================================================================================================
-!   ██████  ██████  ██   ██ ██████  █████   █████  ██████  █████  ██████
-!  ██░░░░  ██░░░░██░██  ░██░░██░░████░░░██ ██░░░██░░██░░████░░░██░░██░░██
-! ░░█████ ░██   ░██░██  ░██ ░██ ░░░██  ░░ ░███████ ░██ ░░░███████ ░██ ░░
-!  ░░░░░██░██   ░██░██  ░██ ░██   ░██   ██░██░░░░  ░██   ░██░░░░  ░██   
-!  ██████ ░░██████ ░░██████░███   ░░█████ ░░██████░███   ░░██████░███   
-! ░░░░░░   ░░░░░░   ░░░░░░ ░░░     ░░░░░   ░░░░░░ ░░░     ░░░░░░ ░░░   
-!  r  e  a  d     c  o  d  e     l  i  k  e     a     w  i  z  a  r  d 
+! 	The syntax of an Xresources file is as follows:
+!		name.Class.resource: value
+!	
+!	Example:
+!		xscreensaver.Dialog.headingFont: -*-fixed-bold-r-*-*-*-100-*-*-*-*-iso8859-1
 !
-! sourcerer by xero harrison (http://xero.nu)
-!  ├─ based on sorcerer by Jeet Sukumaran (http://jeetworks.org)
-!  └─ based on mustang by Henrique C. Alves (hcarvalhoalves@gmail.com)
+!	Syntax Breakdown:
+!		name 	 : The name of the application, such as xterm, xpdf, etc
+!		class 	 : The classification used to group resources together. Class names are typically uppercase.
+!		resource : The name of the resource whose value is to be changed. Resources are typically lowercase with uppercase concatenation
+!		value 	 : The actual value of the resource. This can be 1 of 3 types:
+!			* Integer (whole numbers)
+!			* Boolean (true/false, yes/no, on/off)
+!			* String (a string of characters) (for example a word (white), a color (#ffffff), or a path (/usr/bin/firefox))
+!
+!	Wildcard matching
+!		The asterisk can be used as a wildcard, making it easy to write a single rule that can be applied to many different applications or elements.
+!
+! 	Defines
+!		The following Define related functions are available
+!			#define 	name 	value
+!			#undef		name
+!			#ifdef 		name
+!			#if 		defined(name)
+!			#ifndef 	name
+!			#if 		!defined(name)
+!		Also supported #else #elif #endif
+!			
+!
+! 	Include files
+!		To use different files for each application, use #include in the main file. For example:
+!			#include ".Xresources.d/xterm"
+!			
 !----------------------------------------------------------------------------------------------------------------------
-! █▓▒░ scorcerer colors
-*.foreground:   #c2c2b0
-*.background:   #222222
-*.cursorColor:  #c2c2b0
-! black
-*.color0:       #222222
-*.color8:       #272822
-! red
-*.color1:       #aa4450
-*.color9:       #ff6a6a
-! green
-*.color2:       #719611
-*.color10:      #b1d631
-! yellow
-!*.color3:      #cc8800
-*.color3:       #ff9800
-*.color11:      #87875f
-! blue
-*.color4:       #6688aa
-*.color12:      #90b0d1
-! magenta
-*.color5:       #8f6f8f
-*.color13:      #8181a6
-! cyan
-*.color6:       #528b8b
-*.color14:      #87ceeb
-! white
-*.color7:       #d3d3d3
-*.color15:      #c1cdc1
-! others
-URxvt.colorIT:  #719611
-URxvt.colorBD:  #d3d3d3
-URxvt.colorUL:  #528b8b
 
+!===========================================================
+! The following section is automatically generated
+! from the contents of $XDG_CONFIG_HOME/X11/XResources.d 
+! by a script called from $XDF_CONFIG_HOME/X11/Xsession
+!-----------------------------------------------------------
 
-
-
-
-!==> Rofi
-!rofi.opacity:           90
-!rofi.width:             30
-!rofi.lines:             5
-!rofi.font:              Source Code Pro 9
-rofi.padding:           20
-!rofi.padding: 200
-rofi.fullscreen: true
-rofi.font: Consola Mono Book 20
-rofi.color-window: argb:aa181818, argb:aa181818, #1818181
-rofi.color-normal: argb:0095C7AE, #8fa1b3, argb:0095C7AE, argb:55101218, #95C7AE
-rofi.separator-style: none
-rofi.hide-scrollbar: true
-
-
-! Terminal Waifu
-! https://github.com/veggiedefender/terminal-waifu/blob/master/index.html
-
-! special
-*.foreground:   #f0f0f0
-*.background:   #232c33
-*.cursorColor:  #f0f0f0
-
-! black
-*.color0:       #232c33
-*.color8:       #70838c
-
-! red
-*.color1:       #99736e
-*.color9:       #99736e
-
-! green
-*.color2:       #78a090
-*.color10:      #78a090
-
-! yellow
-*.color3:       #bfb7a1
-*.color11:      #bfb7a1
-
-! blue
-*.color4:       #7c9fa6
-*.color12:      #7c9fa6
-
-! magenta
-*.color5:       #bf9c86
-*.color13:      #bf9c86
-
-! cyan
-*.color6:       #99bfba
-*.color14:      #99bfba
-
-! white
-*.color7:       #f0f0f0
-*.color15:      #f0f0f0
-
+!========================
+! BEGIN GENERATED CONTENT
+#include "/home/david/.config/X11/Xresources.d/10-colors.Xresources"
+#include "/home/david/.config/X11/Xresources.d/20-fonts.Xresources"
+#include "/home/david/.config/X11/Xresources.d/30-terminal-termite.Xresources"
+#include "/home/david/.config/X11/Xresources.d/30-terminal-urxvt.Xresources"
+#include "/home/david/.config/X11/Xresources.d/40-launcher-dmenu.Xresources"
+#include "/home/david/.config/X11/Xresources.d/40-launcher-rofi.Xresources"
+! END GENERATED CONTENT
+!------------------------
 
 !======================================================================================================================
 !	[-|\||) ()|= |_||\|[-

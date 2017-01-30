@@ -25,26 +25,17 @@
 #
 ########################################################################################################################
 
-########################################################################################################################
-# Multimonitor Support
-########################################################################################################################
-xrandr --output DP-0   --primary            # Make this primary
-xrandr --output HDMI-0 --left-of DP-0       # Left Monitor
-xrandr --output HDMI-1 --right-of DP-0      # Right Monitor
-xrandr --output HDMI-1 --rotate left        # Rotate into Portrait Mode
+export XPROFILE_RUN=$(date +%s)
 
-########################################################################################################################
-# Startup Applications
-########################################################################################################################
-feh --randomize --bg-fill ~/.wallpapers/*	# Load wallpaper
-lxpolkit&									# Load Policy Kit
+set -o nounset
+set -o errexit
 
-# Launch Compton
-# copied from .xinitrc because that file isn't working
-XDG_CONFIG_HOME="~/.config"
-composite=$XDG_CONFIG_HOME/compton.conf
-if [ -f "$composite" ]; then
-	compton -b --config "$composite"
+# Run all scripts in ~/.config/X11/Xsession.d
+SESSIONS="$HOME/.config/X11/Xsession.d"
+if [ -d "$SESSIONS" ]; then
+  for SESSION in "$SESSIONS"/*; do
+    source $SESSION
+  done
 fi
 
 ########################################################################################################################

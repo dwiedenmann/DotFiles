@@ -1,0 +1,27 @@
+!======================================================================================================================
+! 	Colors Config
+!
+! 		Called via xrdb -merge from ~/.Xresources
+!----------------------------------------------------------------------------------------------------------------------
+
+#define ColorTheme 
+
+!===================
+! Colors
+!-------------------
+!#include "../Xresources.avail/colors/monokai.Xresources"
+!#include "../Xresources.avail/colors/nikhan.Xresources"
+!#include "../Xresources.avail/colors/sourcerer.Xresources"
+#include "../Xresources.avail/colors/terminalwaifu.Xresources"
+
+!===================
+! Define colors to variables?
+!-------------------
+!*.foreground:   #f0f0f0
+!*.background:   #232c33
+#define cursorColor  	.cursorColor
+#define color0 			.color0
+
+!======================================================================================================================
+!	[-|\||) ()|= |_||\|[-
+!----------------------------------------------------------------------------------------------------------------------
