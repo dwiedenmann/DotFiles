@@ -10,14 +10,13 @@
 ########################################################################################################################
 
 # Exit if program is already running
-#
 if [ $( pgrep compton | wc -l ) -ne 0 ] ; then
 	return 1
 fi
 
 # Declare Multiple possible config files
 declare -a resourcesArray=(
-	$( readlink -e ../../compton.conf)	# Relative Path
+#	$( readlink -e ../../compton.conf)	# Relative Path
 	"$HOME/.config/X11/compton.conf"	# Home Path
 	"$XDG_CONFIG_HOME/X11/compton.conf"	# XDG_CONFIG Path
 	)

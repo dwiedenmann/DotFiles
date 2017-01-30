@@ -9,8 +9,8 @@
 
 # Get the list of XResources to #include
 # Get the absolute path from the relative path
-RESOURCE_DIR=$( readlink -e ../Xresources.d/ )
-#RESOURCE_DIR="$HOME/.config/X11/Xresources.d/"
+#RESOURCE_DIR=$( readlink -e ../Xresources.d/ )
+RESOURCE_DIR="$HOME/.config/X11/Xresources.d/"
 XRESOURCES="$HOME/.Xresources"
 
 # Get a temporary file since it's a pain to handle all the

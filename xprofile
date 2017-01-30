@@ -25,19 +25,23 @@
 #
 ########################################################################################################################
 
-export XPROFILE_RUN=$(date +%s)
+#echo ".xprofile run" >> ~/.xsession-errors
 
-set -o nounset
-set -o errexit
+#export XPROFILE_RUN=$(date +%s)
+
+#set -o nounset
+#set -o errexit
 
 # Run all scripts in ~/.config/X11/Xsession.d
-SESSIONS="$HOME/.config/X11/Xsession.d"
+SESSIONS="$HOME/.config/X11/xprofile.d"
 if [ -d "$SESSIONS" ]; then
   for SESSION in "$SESSIONS"/*; do
-    source $SESSION
+	#echo "$SESSION" >> ~/.xsession-errors 
+	source $SESSION
   done
 fi
 
+#echo ".xprofile completed" >> ~/.xsession-errors
 ########################################################################################################################
 # Need to review
 ########################################################################################################################

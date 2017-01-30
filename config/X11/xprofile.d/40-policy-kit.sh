@@ -7,9 +7,17 @@
 #
 ########################################################################################################################
 
+# name of the program to run
+launch="lxpolkit"
+
+# Exit if program is already running
+if [ $( pgrep $launch | wc -l ) -ne 0 ] ; then
+	return 1
+fi
+
 # check to see if lxpolkit is in the path
-if [ $(which lxpolkit) ]; then
-    lxpolkit&
+if [ $(which $launch) ]; then
+   $launch&
 fi
 
 ########################################################################################################################
