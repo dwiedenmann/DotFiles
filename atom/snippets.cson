@@ -66,6 +66,9 @@
 *
 * @author   David Wiedenmann
 * @version  1.0
+* @since    date:date
+* @since    date:time
+* @since    date:datetime
 * @since    `date +%Y-%m-%d`
 * @since    {new Date().toISOString()}
 * @since    {datetime = new Date(); datetime.getFullYear()}-{(datetime.getMonth()+1)}-{datetime.getDate()} {datetime.getHours()}:{datetime.getMinutes()}

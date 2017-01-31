@@ -73,8 +73,8 @@
 
 !========================
 ! BEGIN GENERATED CONTENT
-#include "/home/david/.config/X11/Xresources.d/10-colors.Xresources"
-#include "/home/david/.config/X11/Xresources.d/20-fonts.Xresources"
+#include "/home/david/.config/X11/Xresources.d/10-fonts.Xresources"
+#include "/home/david/.config/X11/Xresources.d/20-colors.Xresources"
 #include "/home/david/.config/X11/Xresources.d/30-terminal-termite.Xresources"
 #include "/home/david/.config/X11/Xresources.d/30-terminal-urxvt.Xresources"
 #include "/home/david/.config/X11/Xresources.d/40-launcher-dmenu.Xresources"

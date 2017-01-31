@@ -4,18 +4,30 @@
 ! 		Called via xrdb -merge from ~/.Xresources
 !----------------------------------------------------------------------------------------------------------------------
 
-!rofi.opacity:           90
-!rofi.width:             30
-!rofi.lines:             5
-!rofi.font:              Source Code Pro 9
-rofi.padding:           20
-!rofi.padding: 200
-rofi.fullscreen: true
-rofi.font: Consola Mono Book 20
-rofi.color-window: argb:aa181818, argb:aa181818, #1818181
-rofi.color-normal: argb:0095C7AE, #8fa1b3, argb:0095C7AE, argb:55101218, #95C7AE
-rofi.separator-style: none
-rofi.hide-scrollbar: true
+rofi.opacity:           85
+rofi.width:             100
+rofi.lines:             5
+rofi.font: 				SFNS Display 		70	
+!rofi.font: 			Roboto 				50
+!rofi.font:             Source Code Pro 	9
+!rofi.font: 			Consola Mono Book 	50
+
+rofi.padding:           300
+rofi.fullscreen: 		true
+rofi.hide-scrollbar: 	true
+
+!rofi.color-enabled: 	true
+!rofi.separator-style: 	none
+
+!#include "../Xresources.avail/rofi/paper-float.theme"
+!#include "../Xresources.avail/rofi/gruvbox-dark-soft.theme"
+!#include "../Xresources.avail/rofi/blor.theme"
+#include "../Xresources.avail/rofi/Arc-Dark.theme"
+!#include "../Xresources.avail/rofi/Arc-Dark-alternate.theme"
+!#include "../Xresources.avail/rofi/solarized.theme"
+!#include "../Xresources.avail/rofi/solarized_alternate.theme"
+!#include "../Xresources.avail/rofi/android_notification.theme"
+
 
 !======================================================================================================================
 !	[-|\||) ()|= |_||\|[-

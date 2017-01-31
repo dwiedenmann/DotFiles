@@ -47,8 +47,8 @@
 set $mod 			Mod4
 set $alt            Mod1  
 set $execnsi        exec --no-startup-id
-set $innerGaps      25
-set $outerGaps      0
+set $innerGaps      20
+set $outerGaps      -10
 set $border         0
 
 #set $i3             "$XDG_CONFIG_HOME/i3"
@@ -65,7 +65,7 @@ mouse_warping       none
 new_window          pixel $border
 
 # removes window titles from everything
-for_window  [class=".*"]        border pixel 0;  
+for_window  [class=".*"]        border pixel $border;  
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.R
@@ -149,7 +149,7 @@ for_window [window_type=$floating_types]    floating enable
 for_window [window_role=$floating_roles]    floating enable
 for_window [class=$floating_windows]        floating enable
 for_window [title=$floating_windows]        floating enable
-
+for_window [class="plank"]        floating enable
 
 # Open specific applications in floating mode
 #for_window  [class="plank"]     floating enable,move absolute center 
@@ -187,12 +187,16 @@ bindsym $mod+Scroll_Lock $execnsi    DISPLAY=:0.0 feh --randomize --bg-fill ~/.w
 # start a terminal
 bindsym $mod+Return 	 $execnsi 	i3-sensible-terminal	
 # lock screen
-bindsym $mod+Ctrl+l 	 $execnsi 	"~/.scripts/i3lock/i3lock.sh"	
+bindsym $mod+Ctrl+l 	 $execnsi 	"i3lock-fancy"
+#bindsym $mod+Ctrl+l      $execnsi   "~/.scripts/i3lock/i3lock.sh"
 # start dmenu (a program launcher)
 bindsym $mod+d 			\
 		$execnsi 	dmenu_run -fn "SFNS Display 12"			
 
-bindsym $mod+r          $execnsi "$HOME/.scripts/rofimenu"
+bindsym $mod+r $execnsi rofi -show run
+#bindsym $mod+r $execnsi rofi -show run -lines 5 -width 100 -padding 300 -fullscreen -opacity "35" -font "Roboto 50" -separator-style "none"
+#bindsym $mod+r $execnsi rofi -show run -lines 5 -width 100 -padding 300 -fullscreen -opacity "85" -font "Roboto 50" -separator-style "none"
+#bindsym $mod+r          $execnsi "$HOME/.scripts/rofimenu"
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -505,9 +509,9 @@ bindsym XF86AudioPrev 		    $execnsi    mpc previous
 # Set resolution & monitors
 #exec_always --no-startup-id xrandr --output $monitor2 --mode 1280x1024 --pos 1366x0 --gamma 1.4:1.4:1.4 --brightness 1.1 --output $monitor1 --mode 1366x768 --pos 0x0
 
-$execnsi feh --randomize --bg-fill ~/.wallpapers/*
+#$execnsi feh --randomize --bg-fill ~/.wallpapers/*
 $execnsi compton -b --config ~/.config/compton.conf
-$execnsi lxpolkit
+#$execnsi lxpolkit
 
 # Execute main terminal in $ws_terminal
 exec --no-startup-id i3-msg 'workspace $ws_terminal; exec $terminal'
@@ -521,6 +525,16 @@ exec --no-startup-id i3-msg 'workspace $ws_terminal; exec $terminal'
 #$execnsi nm-applet
 #$execnsi xscreensaver -no-splash
 # exec_always numlockx
+
+exec_always xrdb -merge ~/.Xresources
+exec_always --no-startup-id killall polybar; polybar main -c "/home/david/.config/i3/polybar"
+exec_always --no-startup-id killall plank
+exec_always --no-startup-id plank
+#exec --no-startup-id compton --config "/home/nicola/.config/compton.conf"
+exec --no-startup-id dunst -conf "/home/david/.config/dunstrc"
+#exec --no-startup-id nm-applet
+#exec --no-startup-id conky main -c "/home/nicola/.config/i3/conky"
+#exec --no-startup-id mopidy
 
 # Set background
 #exec_always --no-startup-id nitrogen --restore

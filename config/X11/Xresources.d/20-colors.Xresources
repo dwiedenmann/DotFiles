@@ -2,6 +2,9 @@
 ! 	Colors Config
 !
 ! 		Called via xrdb -merge from ~/.Xresources
+!
+!		Nice Preview Utility https://chriskempson.github.io/base16/
+!
 !----------------------------------------------------------------------------------------------------------------------
 
 #define ColorTheme 
@@ -12,7 +15,10 @@
 !#include "../Xresources.avail/colors/monokai.Xresources"
 !#include "../Xresources.avail/colors/nikhan.Xresources"
 !#include "../Xresources.avail/colors/sourcerer.Xresources"
-#include "../Xresources.avail/colors/terminalwaifu.Xresources"
+!#include "../Xresources.avail/colors/terminalwaifu.Xresources"
+!#include "../Xresources.avail/colors/base16-atelier-savanna-256.Xresources"
+!#include "../Xresources.avail/colors/base16-ocean.Xresources"
+#include "../Xresources.avail/colors/base16-embers.Xresources"
 
 !===================
 ! Define colors to variables?

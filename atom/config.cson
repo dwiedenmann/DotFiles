@@ -16,7 +16,7 @@
       "solarized-dark-syntax"
     ]
   editor:
-    fontSize: 23
+    fontSize: 21
   "exception-reporting":
     userId: "eef5ee5e-8390-e87d-4011-dee333f9409f"
   linter:

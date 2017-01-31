@@ -69,6 +69,7 @@
 # Stereo mirrors both channels with low frequencies in center.
 # Mono averages both channels and outputs left to right lowest to highest frequencies
 ; style = stereo 
+style = mono
 
 # raw output target defaults to stdout, a fifo will be created if target does not exist
 ; raw_target = /dev/stdout
