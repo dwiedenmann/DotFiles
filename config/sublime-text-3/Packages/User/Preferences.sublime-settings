@@ -3,5 +3,7 @@
 	"font_size": 9,
 	"ignored_packages":
 	[
-	]
+	],
+	"material_theme_accent_sky": true,
+	"theme": "Material-Theme-Darker.sublime-theme"
 }
