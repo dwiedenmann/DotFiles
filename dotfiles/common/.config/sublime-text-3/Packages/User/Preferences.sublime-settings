@@ -1,9 +1,0 @@
-{
-	"color_scheme": "Packages/base16-textmate/Themes/base16-embers.tmTheme",
-	"font_size": 9,
-	"ignored_packages":
-	[
-	],
-	"material_theme_accent_sky": true,
-	"theme": "Material-Theme-Darker.sublime-theme"
-}

@@ -1,0 +1,17 @@
+[dotfiles]
+    repository = ~/dotfiles
+#	packages = ['config']
+#	packages = ['scripts']
+externals = {
+    '.scripts': '~/dotfiles/scripts',
+    }	
+ignore = [
+    '*.rst',
+    'buildout',
+#    'config',
+    'etc',
+    'ssh',
+    '*.swp',
+    '.*',
+    'submodules'
+]

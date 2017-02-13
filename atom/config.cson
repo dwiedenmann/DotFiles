@@ -1,0 +1,46 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "5de9d6ec-72ee-457a-ba62-528b8e4dfe5c"
+    java:
+      configPath: "/home/david/.atom/packages/atom-beautify/src/beautifiers/uncrustify/default.cfg"
+    python:
+      ignore: [
+        "E24 E501"
+      ]
+      max_line_length: 84
+  "atom-material-ui":
+    colors:
+      genAccent: true
+    tabs:
+      tintedTabBar: true
+    treeView:
+      blendTabs: true
+    ui:
+      panelContrast: true
+      panelShadows: true
+  "base16-syntax":
+    scheme: "Harmonic"
+  core:
+    telemetryConsent: "no"
+    themes: [
+      "atom-material-ui"
+      "base16-syntax"
+    ]
+  editor:
+    fontSize: 20
+  "exception-reporting":
+    userId: "eef5ee5e-8390-e87d-4011-dee333f9409f"
+  linter:
+    errorPanelHeight: 131
+  "linter-pylint":
+    executable: "pylint3"
+    rcFile: "%f"
+  minimap:
+    plugins:
+      "find-and-replace": true
+      "find-and-replaceDecorationsZIndex": 0
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0

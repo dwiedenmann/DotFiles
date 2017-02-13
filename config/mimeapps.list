@@ -1,0 +1,19 @@
+[Added Associations]
+text/html=google-chrome.desktop;
+video/x-msvideo=gnome-mplayer.desktop;
+video/mp4=gnome-mplayer.desktop;mplayer.desktop;mpv.desktop;
+image/jpeg=xnviewmp.desktop;feh.desktop;
+text/markdown=sublime_text_3.desktop;atom.desktop;
+inode/directory=Thunar.desktop;
+text/plain=sublime_text_3.desktop;
+application/x-shellscript=sublime_text_3.desktop;
+text/x-csrc=sublime_text_3.desktop;
+application/octet-stream=sublime_text_3.desktop;
+image/png=xnviewmp.desktop;
+application/zip=org.gnome.FileRoller.desktop;
+text/x-java=sublime_text_3.desktop;
+application/x-theme=sublime_text_3.desktop;
+text/x-matlab=sublime_text_3.desktop;
+
+[Default Applications]
+video/mp4=mpv.desktop

@@ -1,0 +1,65 @@
+!======================================================================================================================
+! 	Rofi Config
+!
+! 		Called via xrdb -merge from ~/.Xresources
+!----------------------------------------------------------------------------------------------------------------------
+
+! Enable fuzzy search mode
+rofi.fuzzy: 			true
+
+!rofi.opacity:          85
+rofi.width:             200
+rofi.lines:             5
+rofi.columns: 			1
+!rofi.dpi: 				120
+rofi.fullscreen: 		true
+rofi.hide-scrollbar: 	true
+
+rofi.font: 				SFNS Display 		70
+!rofi.font:  			Envy Code R			50
+!rofi.font:  			Inconsolata	 		50
+!rofi.font:  			Hack		 		50
+!rofi.font:  			Fantasque Sans Mono 50
+!rofi.font:  			Roboto 				50
+!rofi.font:  			Source Code Pro 	50
+!rofi.font:  			Consola Mono Book 	50
+
+!rofi.color-enabled: 	true
+rofi.separator-style: 	none
+
+! Rofi 1.4 only: % allows flexible for different monitors/layouts
+! Currently setting padding to 20% via awk script in i3 config
+!rofi.padding:			20%		
+rofi.padding:			300
+
+
+
+!======================================================================================================================
+! Default: Use Terminal Colors
+!----------------------------------------------------------------------------------------------------------------------
+
+! State:           'bg',        'fg',		'bgalt',	'hlbg',   	'hlfg'
+rofi.color-window: base00, 		base00,  	base01
+rofi.color-normal: base00, 		base04,  	base00, 	base01, 	base04
+rofi.color-active: base00, 		base0C, 	base00, 	base01, 	base0C
+rofi.color-urgent: base00, 		base0E, 	base00, 	base01, 	base0E
+
+! Transparency is set in Compton
+
+!======================================================================================================================
+! Optional: Override terminal colors with a custom choice
+!----------------------------------------------------------------------------------------------------------------------
+
+!#include "../Xresources.avail/rofi/paper-float.theme"
+!#include "../Xresources.avail/rofi/gruvbox-dark-soft.theme"
+!#include "../Xresources.avail/rofi/blor.theme"
+!#include "../Xresources.avail/rofi/Arc-Dark.theme"
+!#include "../Xresources.avail/rofi/Arc-Dark-alternate.theme"
+!#include "../Xresources.avail/rofi/solarized.theme"
+!#include "../Xresources.avail/rofi/solarized_alternate.theme"
+!#include "../Xresources.avail/rofi/android_notification.theme"
+
+
+!======================================================================================================================
+!	[-|\||) ()|= |_||\|[-
+!----------------------------------------------------------------------------------------------------------------------

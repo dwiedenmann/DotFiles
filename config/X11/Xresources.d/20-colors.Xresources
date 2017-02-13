@@ -1,0 +1,49 @@
+!======================================================================================================================
+!      ______      __                   _  __                                               
+!     / ____/___  / /___  __________   | |/ /________  _________  __  _______________  _____
+!    / /   / __ \/ / __ \/ ___/ ___/   |   // ___/ _ \/ ___/ __ \/ / / / ___/ ___/ _ \/ ___/
+!   / /___/ /_/ / / /_/ / /  (__  )   /   |/ /  /  __(__  ) /_/ / /_/ / /  / /__/  __(__  ) 
+!   \____/\____/_/\____/_/  /____/   /_/|_/_/   \___/____/\____/\__,_/_/   \___/\___/____/  
+!   
+!----------------------------------------------------------------------------------------------------------------------
+!
+! 	Colors Config
+!
+! 		Called via xrdb -merge from ~/.Xresources
+!
+!		Nice Preview Utility https://chriskempson.github.io/base16/
+!
+!----------------------------------------------------------------------------------------------------------------------
+
+#define ColorTheme 
+
+
+!===================
+! Colors
+!-------------------
+#define COLPATH	"../Xresources.avail/colors"
+!#include "../Xresources.avail/colors/monokai.Xresources"
+!#include "../Xresources.avail/colors/nikhan.Xresources"
+!#include "../Xresources.avail/colors/sourcerer.Xresources"
+!#include "../Xresources.avail/colors/terminalwaifu.Xresources"
+!#include "../Xresources.avail/colors/base16-atelier-savanna-256.Xresources"
+!#include "../Xresources.avail/colors/base16-ocean.Xresources"
+!#include "../Xresources.avail/colors/base16-embers.Xresources"
+!#include "../Xresources.avail/colors/base16-flat.Xresources"
+!#include "../Xresources.avail/colors/base16-phd.Xresources"
+!#include "../Xresources.avail/colors/base16-harmonic16-dark-256.Xresources"
+#include "../Xresources.avail/colors/base16-harmonic16-dark.Xresources"
+!#include "../Xresources.avail/colors/base16-isotope.Xresources"
+
+!===================
+! Define colors to variables?
+!-------------------
+!#define cursorColor  		.cursorColor
+!#define color0 			.color0
+#define BG_OPACITY			75
+#define BG_COLOR			base00
+#define FG_COLOR			base05
+
+!======================================================================================================================
+!	[-|\||) ()|= |_||\|[-
+!----------------------------------------------------------------------------------------------------------------------

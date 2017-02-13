@@ -1,0 +1,141 @@
+!======================================================================================================================
+!      __  __                __     _  __                                               
+!     / / / /_____  ___   __/ /_   | |/ /________  _________  __  _______________  _____
+!    / / / / ___/ |/_/ | / / __/   |   // ___/ _ \/ ___/ __ \/ / / / ___/ ___/ _ \/ ___/
+!   / /_/ / /  _>  < | |/ / /_    /   |/ /  /  __(__  ) /_/ / /_/ / /  / /__/  __(__  ) 
+!   \____/_/  /_/|_| |___/\__/   /_/|_/_/   \___/____/\____/\__,_/_/   \___/\___/____/ 
+!
+!----------------------------------------------------------------------------------------------------------------------
+!
+! 	URxvt Config
+!
+! 		Called via xrdb -merge from ~/.Xresources
+! 		More info at:
+! 		http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
+!
+!	Use the following command to see all URxvt options
+!		 urxvt --help 2>&1 | less
+!
+!----------------------------------------------------------------------------------------------------------------------
+
+
+
+!=======================================
+! Fonts
+!---------------------------------------
+!URxvt*font: xft:gohufont:size=11:antialias=false, \
+!            xft:Symbola:pixelsize=14:antialias=true:hinting=slight
+
+!URxvt.font: 				xft:Envy Code R:pixelsize=14,xft:Symbola
+URxvt.font: 				xft:Hack-Regular For Powerline:pixelsize=16,xft:Symbola
+!URxvt*font: 				xft:Terminus For Powerline:pixelsize=14:slant=italic,xft:Symbola
+!URxvt.font: 				-*-terminus-medium-*-*-*-*-140-*-*-*-*-iso8859-1
+!URxvt.font: 				xft:DejaVu Sans Mono:pixelsize=12
+
+URxvt*boldFont: 
+URxvt*italicFont: 
+URxvt*bolditalicFont: 
+
+!=======================================
+! Colorize Bold, Underline, Italics (useful for Man pages)
+!---------------------------------------
+URxvt.colorIT:  			base09
+URxvt.colorBD:  			base07
+URxvt.colorUL:  			base0B
+URxvt.colorRV:  			base0D
+URxvt.cursorColor: 			base0C
+
+!underlineColor:                 color
+!scrollColor:                    color
+!troughColor:                    color
+!highlightColor:                 color
+!highlightTextColor:             color
+!cursorColor:                    color
+!cursorColor2:                   color
+!pointerColor:                   color
+!pointerColor2:                  color
+!borderColor:                    color
+
+
+!=======================================
+! Other settings
+!---------------------------------------
+
+! Make background transparent
+
+URxvt.depth:             	32
+
+! Use background color
+URxvt*background:	    	[BG_OPACITY]BG_COLOR
+
+URxvt.internalBorder:  		5
+
+!URxvt*.geometry:          	120x30
+
+URxvt.intensityStyles: 		true
+URxvt*letterSpace: 			-1
+URxvt*lineSpace:            0
+URxvt.scrollBar: 			false
+URxvt.scrollstyle: 			plain
+
+URxvt.pointerBlank: 		true
+!URxvt.tripleclickwords:		true
+
+!urxvt*transparent: 		true
+!URxvt.shading:             50
+!URxvt*.fading:             15
+!URxvt.urgentOnBell:       	true
+!URxvt.visualBell:         	true
+URxvt.loginShell:           true
+URxvt.saveLines:           	9999
+
+
+
+!=======================================
+! Perl Extensions / Keyboard shortcuts
+!---------------------------------------
+! Modifier is Alt
+
+!URxvt.perl-lib: /usr/local/lib/urxvt/perl/
+URxvt.perl-ext-common:      default,font-size,clipboard,keyboard-select,matcher,tabbed,url-select
+!,,config-reload
+
+!=======================================
+! Open URLs by clicking
+!---------------------------------------
+URxvt.url-select.launcher:  /usr/bin/xdg-open
+!URxvt.url-select.launcher: sensible-browser
+URxvt.underlineURLs: 		true
+URxvt*matcher.button: 		1
+URxvt*matcher.pattern.1:   	\\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+URxvt.keysym.M-u:           perl:url-select:select_next
+
+!=======================================
+! Keyboard shortcuts to perl extensions
+!---------------------------------------
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+
+! Copy/Paste
+URxvt.keysym.M-c:   		perl:clipboard:copy
+URxvt.keysym.C-v:   		perl:clipboard:paste
+URxvt.keysym.M-C-v: 		perl:clipboard:paste_escaped
+URxvt.clipboard.copycmd:  	xsel -ib
+URxvt.clipboard.pastecmd: 	xsel -ob
+
+! Resize Fonts
+URxvt.font-size.step: 		2
+URxvt.keysym.C-Up:     		font-size:increase
+URxvt.keysym.C-Down:   		font-size:decrease
+URxvt.keysym.C-S-Up:   		font-size:incglobal
+URxvt.keysym.C-S-Down: 		font-size:decglobal
+URxvt.keysym.C-equal:  		font-size:reset
+URxvt.keysym.C-slash:  		font-size:show
+
+!URxvt.iso14755: 			false
+!URxvt*altSendsEscape: 		true
+
+
+!======================================================================================================================
+!	[-|\||) ()|= |_||\|[-
+!----------------------------------------------------------------------------------------------------------------------
