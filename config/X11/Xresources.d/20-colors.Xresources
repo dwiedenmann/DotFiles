@@ -18,9 +18,9 @@
 #define ColorTheme 
 
 
-!===================
+!=======================================
 ! Colors
-!-------------------
+!---------------------------------------
 #define COLPATH	"../Xresources.avail/colors"
 !#include "../Xresources.avail/colors/monokai.Xresources"
 !#include "../Xresources.avail/colors/nikhan.Xresources"
@@ -35,9 +35,10 @@
 #include "../Xresources.avail/colors/base16-harmonic16-dark.Xresources"
 !#include "../Xresources.avail/colors/base16-isotope.Xresources"
 
-!===================
+!=======================================
 ! Define colors to variables?
-!-------------------
+!---------------------------------------
+
 !#define cursorColor  		.cursorColor
 !#define color0 			.color0
 #define BG_OPACITY			75

@@ -1,12 +1,29 @@
 #!/usr/bin/env bash
+# UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity. -Dennis Ritchie
+#########################################################################################################################
+#                         ____     __       __                        _____      
+#       ____  ___  ____  / __/__  / /______/ /_     _________  ____  / __(_)___ _
+#      / __ \/ _ \/ __ \/ /_/ _ \/ __/ ___/ __ \   / ___/ __ \/ __ \/ /_/ / __ `/
+#     / / / /  __/ /_/ / __/  __/ /_/ /__/ / / /  / /__/ /_/ / / / / __/ / /_/ / 
+#    /_/ /_/\___/\____/_/  \___/\__/\___/_/ /_/   \___/\____/_/ /_/_/ /_/\__, /  
+#                                                                       /____/ 
+#######################################################################################################################
 #
-# Neofetch config file
-# https://github.com/dylanaraps/neofetch
+#   Neofetch - A fast, highly customizable system info script
+#
+#       Neofetch  is  a  CLI  system information tool written in BASH. 
+#       Neofetch displays information about your system next to an image, 
+#       your OS logo, or any ASCII file of your choice.
+#
+#   Neofetch Wiki 
+#       https://github.com/dylanaraps/neofetch/wiki/Customizing-Info
+#       https://github.com/dylanaraps/neofetch
+#
+#######################################################################################################################
 
-
-# See this wiki page for more info:
-# https://github.com/dylanaraps/neofetch/wiki/Customizing-Info
+####################
 print_info() {
+####################
     info title
     info underline   
     info "OS" distro
@@ -727,3 +744,7 @@ image_host="teknik"
 # NOTE: Don't change this value, neofetch reads this to determine
 # how to handle backwards compatibility.
 config_version="3.0.1"
+
+#######################################################################################################################
+#   [-|\||) ()|= |_||\|[-
+#######################################################################################################################

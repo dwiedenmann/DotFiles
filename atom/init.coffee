@@ -1,15 +1,42 @@
-# Your init script
+#######################################################################################################################
+#            __                     _       _ __                    _       __ 
+#     ____ _/ /_____  ____ ___     (_)___  (_) /_   _______________(_)___  / /_
+#    / __ `/ __/ __ \/ __ `__ \   / / __ \/ / __/  / ___/ ___/ ___/ / __ \/ __/
+#   / /_/ / /_/ /_/ / / / / / /  / / / / / / /_   (__  ) /__/ /  / / /_/ / /_  
+#   \__,_/\__/\____/_/ /_/ /_/  /_/_/ /_/_/\__/  /____/\___/_/  /_/ .___/\__/  
+#                                                                /_/          
+#                                                      
+#######################################################################################################################
 #
-# Atom will evaluate this file each time a new window is opened. It is run
-# after packages are loaded/activated and after the previous editor state
-# has been restored.
+# 	Your init script
 #
-# An example hack to log to the console when each text editor is saved.
+# 	Atom will evaluate this file each time a new window is opened. It is run
+# 	after packages are loaded/activated and after the previous editor state
+# 	has been restored.
 #
-# atom.workspace.observeTextEditors (editor) ->
-#   editor.onDidSave ->
-#     console.log "Saved! #{editor.getPath()}"
+# 	An example hack to log to the console when each text editor is saved.
+#
+# 	atom.workspace.observeTextEditors (editor) ->
+#   	editor.onDidSave ->
+#     	console.log "Saved! #{editor.getPath()}"
+#
+#######################################################################################################################
 
-"*": # make sure to put all "file-types" options under the "*" key
-  "file-types":
-    "config.": "source.shell"
+############################################################
+# make sure to put all "file-types" options under the "*" key
+"*": 
+############################################################
+
+	####################
+    "file-types":
+	####################
+
+		"config.": "source.shell"
+
+
+
+
+
+#######################################################################################################################
+#	[-|\||) ()|= |_||\|[-
+#######################################################################################################################

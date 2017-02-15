@@ -90,7 +90,6 @@ URxvt.loginShell:           true
 URxvt.saveLines:           	9999
 
 
-
 !=======================================
 ! Perl Extensions / Keyboard shortcuts
 !---------------------------------------
@@ -99,6 +98,7 @@ URxvt.saveLines:           	9999
 !URxvt.perl-lib: /usr/local/lib/urxvt/perl/
 URxvt.perl-ext-common:      default,font-size,clipboard,keyboard-select,matcher,tabbed,url-select
 !,,config-reload
+
 
 !=======================================
 ! Open URLs by clicking
@@ -109,6 +109,7 @@ URxvt.underlineURLs: 		true
 URxvt*matcher.button: 		1
 URxvt*matcher.pattern.1:   	\\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 URxvt.keysym.M-u:           perl:url-select:select_next
+
 
 !=======================================
 ! Keyboard shortcuts to perl extensions
