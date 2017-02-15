@@ -64,5 +64,8 @@ alias spaceused='du -sm * | sort -nr | awk '"'"'$1>'"1""'"
 #--uptime_shorthand 	on \
 #--gtk_shorthand 	on \
 
+# temp workaround for gitkraken libcurl-compat issue
+alias gitkrak="LD_PRELOAD=/usr/lib/libcurl.so.3 gitkraken &"
+
 alias showtoiletfonts='for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.tlf; do j=${i##*/}; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done'
 #alias showtoiletfonts='for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done'

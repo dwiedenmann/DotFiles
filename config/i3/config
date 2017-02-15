@@ -46,6 +46,7 @@
 ########################################################################################################################
 set $mod            Mod4
 set $alt            Mod1  
+set $ctrl 			Control
 set $execnsi        exec --no-startup-id
 set $innerGaps      20
 set $outerGaps      -10
@@ -64,7 +65,7 @@ new_float           none
 # Focus by mouse or keyboard?
 focus_follows_mouse yes
 # Controls if mouse warps to new window
-#mouse_warping       none
+#mouse_warping       none|output
 new_window          pixel $border
 
 # removes window titles from everything
@@ -72,7 +73,9 @@ for_window  [class=".*"]        border pixel $border;
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.R
-font                pango:SFNS Display 8, Terminus 8
+set $font1 			pango:SFNS Display 16
+set $font2			pango:Hack 12
+font                $font1, $font2
 
 ########################################################################################################################
 #   i3-gaps A fork of i3wm tiling window manager with more features, including gaps
@@ -103,137 +106,245 @@ gaps        outer   $outerGaps
 # Workspace
 #######################################################################################################################
 
+# Rename Workspace
+#rename workspace <old_name> to <new_name>
+#rename workspace to <new_name>
 
-# show desktop when hitting Print
-bindsym             Print               workspace $ws_Empty
-bindsym --release   Print   workspace   back_and_forth
+# <IDEA>
+#################################################################
+# Script to dynamically sort monitors left to right, top to bottom
+# 1. Get connected monitors
+# 2. Split into <Device> <primary?> <HRes> <VRes> <XOffset> <YOffset>
+# 3. Sort by <Primary>Z then <XOffset> then <YOffset>
+# 4. Print the 1st Word Only <Device>
+# => So primary monitor is #1, the rest are sorted by Offset
+# RESOLUTION_RE="\b([-0-9]+)x([-0-9]+)"
+# OFFSET_RE="\+([-0-9]+)\+([-0-9]+)"
+# MONITORS=($( xrandr | grep -w connected | \
+# 	sed -Er "s/^([^ ]*)[^p]*\b(primary)?.*$RESOLUTION_RE$OFFSET_RE.*$/\1 \2Z \3 \4 \5/" | \
+# 	sort -nk256 |
+# 	awk '{print $1}' ))
+#
+# Now print the 3 monitors from the array
+# echo ${MONITORS[0]}
+# echo ${MONITORS[1]}
+# echo ${MONITORS[2]}
+#################################################################
+
+# <GOTCHA>
+# Variables expansion is not recursive so it is not possible 
+# to define a variable with a value containing another variable. 
+#set $ws1    $ws_code
+
+# Rename a workspace
+bindsym $mod+i $execnsi i3-input -f '$font1' -F 'rename workspace to "%s"' -P 'Workspace Name: '
 		
-# todo research named workspaces
+# Hitting Mod+# when already one the workspace will take you back
+workspace_auto_back_and_forth 	yes
 
 # Outputs (Monitors)
-set $monitor1 DP-0
-set $monitor2 HDMI-1
-set $monitor3 HDMI-0
+set $monitor_1 DP-0
+set $monitor_2 HDMI-0
+set $monitor_3 HDMI-1
 
-#workspace   1   output  DP-0
-#workspace   2   output  HDMI-0
-#workspace   3   output  HDMI-1
 
-# Workspaces
-set $ws_1        		"Explore"
-set $ws_2           	"Code"
-set $ws_3           	"Code2"
-set $ws_4           	"Play"
+#bindsym $mod+1 workspace 1: mail
+#bindsym $mod+2 workspace 2: www
 
-set $ws_5             	"Browse"
-set $ws_6             	"Watch"
-set $ws_7             	"Git"
+################################################################################
+# Workspaces Names
+################################################################################
+# Center Monitor
+set $ws_1        		"1: Explore"
+set $ws_2           	"2: Code"
+set $ws_3           	"3: Code2"
+set $ws_4           	"4: Play"
+set $ws_5 				"5: C5"
+set $ws_6 				"6: C6"
+set $ws_7 				"7: C7"
+set $ws_8 				"8: C8"
+set $ws_9 				"9: C9"
+set $ws_10 				"10:C0"
 
-set $ws_8        		"Terminals"
-set $ws_9        		"Files"
-set $ws_0        		"Music"
+# Left Monitor
+set $ws_11        		"11:Web"
+set $ws_12           	"12:Watch"
+set $ws_13           	"13:Git"
+set $ws_14           	"14:Research"
+set $ws_15 				"15:Planning"
+set $ws_16 				"16:L6"
+set $ws_17 				"17:L7"
+set $ws_18 				"18:L8"
+set $ws_19 				"19:L9"
+set $ws_20 				"20:L0"
+
+# Right Monitor
+set $ws_21        		"21:Terminals"
+set $ws_22           	"22:Files"
+set $ws_23           	"23:Music"
+set $ws_24           	"24:Chat"
+set $ws_25				"25:R5"
+set $ws_26				"26:R6"
+set $ws_27				"27:R7"
+set $ws_28				"28:R8"
+set $ws_29				"29:R9"
+set $ws_30				"30:R0"
 
 set $ws_empty 			"Desktop"
 
-#set $ws_generic         "1:Generic"
-#set $ws_generic         "2:Generic2"
+# Other workspace ideas, the only limit is how to assign Shortcuts
+# Chat
+# Download
+# News
+# Plan
 
-#set $ws_games           "8:Games"
+################################################################################
 
-# Monitor 3
-#set $ws_dl              "3:Right"
-#set $ws_music           "3:Right"
-# Social/Organizing ?
-#set $ws_mail            "2:Mail"
-#set $ws_chat            "5:Chat"
-
-
-#ws-icon-0                       = code;
-#ws-icon-1                       = explore;
-#ws-icon-2                       = browse;
-#ws-icon-3                       = write;
-#ws-icon-4                       = listen;
-#ws-icon-5                       = draw;
-#ws-icon-6                       = play;
-#ws-icon-7                       = chat;
-#ws-icon-8                       = download;
-#ws-icon-9                       = watch;
-
-#set $ws_news            "6:News"
-
-# Variables expansion is not recursive so it is not possible to define a variable with a value containing another variable. 
-#set $ws1    $ws_code
-#set $ws2    $ws_web
-#set $ws3    $ws_terminal
-#set $ws4    $ws_terminal2
-#set $ws5    $ws_web2
-#set $ws6    $ws_terminal2
-#set $ws7    7
-#set $ws8    8
-#set $ws9    9
-#set $ws10   10
-
-# move to workspace
-bindsym $mod+1 				workspace 		$ws_1
-bindsym $mod+2 				workspace 		$ws_2
-bindsym $mod+3              workspace 		$ws_3
-bindsym $mod+4              workspace 		$ws_4
-bindsym $mod+5              workspace 		$ws_5
-bindsym $mod+6              workspace 		$ws_6
-bindsym $mod+7              workspace 		$ws_7
-bindsym $mod+8              workspace 		$ws_8
-bindsym $mod+9              workspace 		$ws_9
-bindsym $mod+0              workspace 		$ws_0
-
-# Monitors for workspaces
-workspace $ws_1             output      	$monitor_1
-workspace $ws_2             output      	$monitor_1
-workspace $ws_3             output      	$monitor_1
-workspace $ws_4             output      	$monitor_1
-workspace $ws_5             output      	$monitor_2
-workspace $ws_6             output      	$monitor_2
-workspace $ws_7             output      	$monitor_2
-workspace $ws_8             output      	$monitor_3
-workspace $ws_9             output      	$monitor_3
-workspace $ws_0 			output      	$monitor_3
-
-## Monitors for workspaces
-#workspace $ws_games         output      $monitor1
-#workspace $ws_dev           output      $monitor1
-#workspace $ws_web           output      $monitor1
-#workspace $ws_generic       output      $monitor1
-#workspace $ws_generic       output      $monitor2
-#workspace $ws_mail          output      $monitor2
-#workspace $ws_news          output      $monitor2
-#workspace $ws_terminal      output      $monitor3
-#workspace $ws_dl            output      $monitor3
-#workspace $ws_music         output      $monitor3
-
-# move focused container to workspace
-bindsym $mod+Shift+1    move container to   workspace $ws_1
-bindsym $mod+Shift+2    move container to   workspace $ws_2
-bindsym $mod+Shift+3    move container to   workspace $ws_3
-bindsym $mod+Shift+4    move container to   workspace $ws_4
-bindsym $mod+Shift+5    move container to   workspace $ws_5
-bindsym $mod+Shift+6    move container to   workspace $ws_6
-bindsym $mod+Shift+7    move container to   workspace $ws_7
-bindsym $mod+Shift+8    move container to   workspace $ws_8
-bindsym $mod+Shift+9    move container to   workspace $ws_9
-bindsym $mod+Shift+0    move container to   workspace $ws_0
+# Start urxvt -name irssi
+assign [class="(?i)gitkraken"] 	workspace $ws_13
+assign [class="(?i)Deluge"] 	workspace $ws_22
+assign [class="(?i)XnView"] 	workspace $ws_10
+#assign [class="^gitkrakaken$" instance="^irssi$"] workspace $ws_13
 
 
-# Move focused container to workspace & move to it
-#bindsym $mod+Shift+ampersand move container to workspace $ws_generic; workspace $ws_generic
-#bindsym $mod+Shift+eacute move container to workspace $ws_mail; workspace $ws_mail
-#bindsym $mod+Shift+quotedbl move container to workspace $ws_web; workspace $ws_web
-#bindsym $mod+Shift+apostrophe move container to workspace $ws_dev; workspace $ws_dev
-#bindsym $mod+Shift+5 move container to workspace $ws_chat; workspace $ws_chat
-#bindsym $mod+Shift+minus move container to workspace $ws_news; workspace $ws_news
-#bindsym $mod+Shift+egrave move container to workspace $ws_dl; workspace $ws_dl
-#bindsym $mod+Shift+underscore move container to workspace $ws_games; workspace $ws_games
-#bindsym $mod+Shift+ccedilla move container to workspace $ws_generic2; workspace $ws_generic2
-#bindsym $mod+Shift+agrave move container to workspace $ws_music; workspace $ws_music
-#bindsym $mod+Shift+F12 move container to workspace $ws_terminal; workspace $ws_terminal
+################################################################################
+# Multiple Monitor Configuration 
+# Ctrl-Mod-Alt
+# 
+# Command 						Action               Monitor
+# ----------------------      -----------------------------------
+# Mod +      +         # 	= Select Workspace    - Center Screen
+# Mod + Ctrl +         # 	= Select Workspace    - Left   Screen
+# Mod + Alt  +         # 	= Select Workspace    - Right  Screen
+# Mod +      + Shift + # 	= Move Wind to WrkSpc - Center Screen
+# Mod + Ctrl + Shift + # 	= Move Wind to WrkSpc - Left   Screen
+# Mod + Alt  + Shift + # 	= Move Wind to WrkSpc - Right  Screen
+
+################################################################################
+# Center Monitor
+################################################################################
+# Switch to Workspace
+# Set Workspaces to Monitor
+# Move Window to Workspace
+################################################################################
+bindsym 	$mod+1 				workspace 		$ws_1
+bindsym 	$mod+2 				workspace 		$ws_2
+bindsym 	$mod+3              workspace 		$ws_3
+bindsym 	$mod+4              workspace 		$ws_4
+bindsym 	$mod+5              workspace 		$ws_5
+bindsym 	$mod+6              workspace 		$ws_6
+bindsym 	$mod+7              workspace 		$ws_7
+bindsym 	$mod+8              workspace 		$ws_8
+bindsym 	$mod+9              workspace 		$ws_9
+bindsym 	$mod+0              workspace 		$ws_10
+workspace 	$ws_1             	output      	$monitor_1
+workspace 	$ws_2             	output      	$monitor_1
+workspace 	$ws_3             	output      	$monitor_1
+workspace 	$ws_4            	output      	$monitor_1
+workspace 	$ws_5            	output      	$monitor_1
+workspace 	$ws_6             	output      	$monitor_1
+workspace 	$ws_7             	output      	$monitor_1
+workspace 	$ws_8             	output      	$monitor_1
+workspace 	$ws_9             	output      	$monitor_1
+workspace 	$ws_10				output      	$monitor_1
+bindsym 	$mod+Shift+1 		move container to workspace $ws_1
+bindsym 	$mod+Shift+2 		move container to workspace $ws_2
+bindsym 	$mod+Shift+3 		move container to workspace $ws_3
+bindsym 	$mod+Shift+4 		move container to workspace $ws_4
+bindsym 	$mod+Shift+5 		move container to workspace $ws_5
+bindsym 	$mod+Shift+6 		move container to workspace $ws_6
+bindsym 	$mod+Shift+7 		move container to workspace $ws_7
+bindsym 	$mod+Shift+8 		move container to workspace $ws_8
+bindsym 	$mod+Shift+9 		move container to workspace $ws_9
+bindsym 	$mod+Shift+0 		move container to workspace $ws_10
+
+################################################################################
+# Left Monitor
+################################################################################
+# Switch to Workspace
+# Set Workspaces to Monitor
+# Move Window to Workspace
+################################################################################
+bindsym 	$mod+Control+1 		workspace 		$ws_11
+bindsym 	$mod+Control+2 		workspace 		$ws_12
+bindsym 	$mod+Control+3 		workspace 		$ws_13
+bindsym 	$mod+Control+4      workspace 		$ws_14
+bindsym 	$mod+Control+5      workspace 		$ws_15
+bindsym 	$mod+Control+6      workspace 		$ws_16
+bindsym 	$mod+Control+7      workspace 		$ws_17
+bindsym 	$mod+Control+8      workspace 		$ws_18
+bindsym 	$mod+Control+9      workspace 		$ws_19
+bindsym 	$mod+Control+0      workspace 		$ws_20
+workspace 	$ws_11            	output      	$monitor_2
+workspace 	$ws_12            	output      	$monitor_2
+workspace 	$ws_13            	output      	$monitor_2
+workspace 	$ws_14            	output      	$monitor_2
+workspace 	$ws_15            	output      	$monitor_2
+workspace 	$ws_16            	output      	$monitor_2
+workspace 	$ws_17            	output      	$monitor_2
+workspace 	$ws_18            	output      	$monitor_2
+workspace 	$ws_19            	output      	$monitor_2
+workspace 	$ws_20 				output  	    $monitor_2
+bindsym 	$mod+$ctrl+Shift+1 	move container to workspace $ws_11
+bindsym 	$mod+$ctrl+Shift+2 	move container to workspace $ws_12
+bindsym 	$mod+$ctrl+Shift+3 	move container to workspace $ws_13
+bindsym 	$mod+$ctrl+Shift+4 	move container to workspace $ws_14
+bindsym 	$mod+$ctrl+Shift+5 	move container to workspace $ws_15
+bindsym 	$mod+$ctrl+Shift+6 	move container to workspace $ws_16
+bindsym 	$mod+$ctrl+Shift+7 	move container to workspace $ws_17
+bindsym 	$mod+$ctrl+Shift+8 	move container to workspace $ws_18
+bindsym 	$mod+$ctrl+Shift+9 	move container to workspace $ws_19
+bindsym 	$mod+$ctrl+Shift+0 	move container to workspace $ws_20
+
+################################################################################
+# Right Monitor
+################################################################################
+# Switch to Workspace
+# Set Workspaces to Monitor
+# Move Window to Workspace
+################################################################################
+bindsym 	$mod+$alt+1 		workspace 		$ws_21
+bindsym 	$mod+$alt+2 		workspace 		$ws_22
+bindsym 	$mod+$alt+3 		workspace 		$ws_23
+bindsym 	$mod+$alt+4      	workspace 		$ws_24
+bindsym 	$mod+$alt+5      	workspace 		$ws_25
+bindsym 	$mod+$alt+6      	workspace 		$ws_26
+bindsym 	$mod+$alt+7      	workspace 		$ws_27
+bindsym 	$mod+$alt+8      	workspace 		$ws_28
+bindsym 	$mod+$alt+9      	workspace 		$ws_29
+bindsym 	$mod+$alt+0      	workspace 		$ws_30
+workspace	$ws_21         	  	output      	$monitor_3
+workspace 	$ws_22            	output      	$monitor_3
+workspace 	$ws_23            	output      	$monitor_3
+workspace 	$ws_24            	output      	$monitor_3
+workspace 	$ws_25            	output      	$monitor_3
+workspace 	$ws_26            	output      	$monitor_3
+workspace 	$ws_27            	output      	$monitor_3
+workspace 	$ws_28            	output      	$monitor_3
+workspace 	$ws_29            	output      	$monitor_3
+workspace 	$ws_30 				output  	    $monitor_3
+bindsym 	$mod+$alt+Shift+1 	move container to workspace $ws_21
+bindsym 	$mod+$alt+Shift+2 	move container to workspace $ws_22
+bindsym 	$mod+$alt+Shift+3 	move container to workspace $ws_23
+bindsym 	$mod+$alt+Shift+4 	move container to workspace $ws_24
+bindsym 	$mod+$alt+Shift+5 	move container to workspace $ws_25
+bindsym 	$mod+$alt+Shift+6 	move container to workspace $ws_26
+bindsym 	$mod+$alt+Shift+7 	move container to workspace $ws_27
+bindsym 	$mod+$alt+Shift+8 	move container to workspace $ws_28
+bindsym 	$mod+$alt+Shift+9 	move container to workspace $ws_29
+bindsym 	$mod+$alt+Shift+0 	move container to workspace $ws_20
+################################################################################
+
+
+# ampersand
+# eacute
+# quotedbl
+# apostrophe
+# minus
+# egrave
+# underscore
+# ccedilla
+# agrave
 
 
 # Move the current workspace to the next output
@@ -241,6 +352,20 @@ bindsym $mod+Shift+0    move container to   workspace $ws_0
 bindsym $mod+Shift+bracketleft  move workspace to output left
 bindsym $mod+Shift+bracketright move workspace to output right
 
+#bindsym $mod+Shift+ 		i3-msg workspace next_on_output
+bindsym --whole-window $mod+Button4 		workspace next_on_output 
+bindsym --whole-window $mod+Button5 		workspace prev_on_output 
+bindsym --whole-window $mod+$alt+Button4 	exec "compton-trans -c +5"
+bindsym --whole-window $mod+$alt+Button5 	exec "compton-trans -c -5"
+#bindsym --whole-window $mod+$ctrl+Button4 	workspace next
+#bindsym --whole-window $mod+$ctrl+Button5 	workspace prev
+
+#bindsym --whole-window $mod+Button4 exec "compton-trans -c -5"
+#bindsym --whole-window $mod+Button5 exec "compton-trans -c +5"
+
+# show desktop when hitting Print
+bindsym             Print               workspace $ws_Empty
+bindsym --release   Print   workspace   back_and_forth
 
 #######################################################################################################################
 # Custom Behavior for Programs
@@ -249,8 +374,6 @@ bindsym $mod+Shift+bracketright move workspace to output right
 #assign [class="Iceweasel"] $wp1
 # if you want to kill all windows which have the class Firefox, use:
 #bindsym $mod+x [class="Firefox"] kill
-
-
 
 
 
@@ -278,6 +401,7 @@ for_window [window_role=$floating_roles]    floating enable
 for_window [class=$floating_windows]        floating enable
 for_window [title=$floating_windows]        floating enable
 for_window [class="plank"]                  floating enable
+for_window [instance=notepad] 				sticky 	 enable
 
 # Open specific applications in floating mode
 #for_window  [class="plank"]     floating enable,move absolute center 
@@ -319,7 +443,7 @@ bindsym $mod+Ctrl+l      $execnsi   "i3lock-fancy"
 #bindsym $mod+Ctrl+l      $execnsi   "~/.scripts/i3lock/i3lock.sh"
 # start dmenu (a program launcher)
 bindsym $mod+d          \
-		$execnsi    dmenu_run -fn "SFNS Display 12"         
+		$execnsi    dmenu_run -fn "$font1"         
 
 bindsym $mod+r $execnsi "rofi -show run"
 #bindsym $mod+r $execnsi "rofi -show run -padding $(($(xwininfo -id $(xdotool getactivewindow) | awk '/Width/ { print $2}')/5))"
@@ -383,7 +507,7 @@ bindsym $mod+space              focus   mode_toggle
 # Focus the parent/child containers
 bindsym $mod+j                  focus   parent      
 bindsym $mod+k                  focus   child       
-
+#[bindsym $mod+l 					move container to workspace next
 
 
 #######################################################################################################################
@@ -486,24 +610,24 @@ set $bg_light       #444752
 ## Base16 Harmonic16 Dark
 # Author: Jannik Siebert (https://github.com/janniks)
 #
+# Get XResources Colors
 # You can use these variables anywhere in the i3 configuration file.
-
-set $base00 #0b1c2c
-set $base01 #223b54
-set $base02 #405c79
-set $base03 #627e99
-set $base04 #aabcce
-set $base05 #cbd6e2
-set $base06 #e5ebf1
-set $base07 #f7f9fb
-set $base08 #bf8b56
-set $base09 #bfbf56
-set $base0A #8bbf56
-set $base0B #56bf8b
-set $base0C #568bbf
-set $base0D #8b56bf
-set $base0E #bf568b
-set $base0F #bf5656
+set from resource $base00 color0  #0b1c2c
+set from resource $base01 color1  #223b54
+set from resource $base02 color2  #405c79
+set from resource $base03 color3  #627e99
+set from resource $base04 color4  #aabcce
+set from resource $base05 color5  #cbd6e2
+set from resource $base06 color6  #e5ebf1
+set from resource $base07 color7  #f7f9fb
+set from resource $base08 color8  #bf8b56
+set from resource $base09 color9  #bfbf56
+set from resource $base0A color10 #8bbf56
+set from resource $base0B color11 #56bf8b
+set from resource $base0C color12 #568bbf
+set from resource $base0D color13 #8b56bf
+set from resource $base0E color14 #bf568b
+set from resource $base0F color15 #bf5656
 
 # Basic bar configuration using the Base16 variables.
 #bar {

@@ -4,7 +4,7 @@
 [general]
 
 # smoothing mode, can be normal, scientific or waves.
-mode = normal
+mode = waves
  
 # Framerate Default: 60. Accepts only non-negative values.
 ; framerate = 60 
@@ -21,8 +21,8 @@ overshoot = 50
 # The number of bars (0-200). 0 (default) sets it to auto (fill up console).
 # width of bars and space between bars in number of characters. Default width 3 and space 1.
 ; bars = 0 
-bar_width = 1
-bar_spacing = 0
+bar_width = 3
+bar_spacing = 1
 
 
 # Lower and higher cutoff frequencies for lowest and highest bars
@@ -95,7 +95,7 @@ style = mono
 
 # supported colors are: red, green, yellow, magenta, cyan, white, blue, black.
 ; background = black
-; foreground = cyan
+foreground = magenta
 
 
 [smoothing]
@@ -105,7 +105,7 @@ style = mono
 ; integral = 0.7 
 
 # disables or enables the so-called "Monstercat smoothing". Default: 1. Set to 0 to disable.
-monstercat = 0
+monstercat = 1
 
 # Set gravity multiplier for "drop off". Higher values means bars will drop faster. 
 # Accepts only non-negative values. 0.5 means half gravity, 2 means double. Set to 0 to disable "drop off".

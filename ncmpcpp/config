@@ -105,8 +105,8 @@ visualizer_fifo_path = "~/.mpd/mpd.fifo"
 ## are some problems with it.
 ##
 #
-#visualizer_output_name = "ncmpcpp visualiser"
-visualizer_output_name = "mpd spectrum"
+visualizer_output_name = "ncmpcpp visualiser"
+#visualizer_output_name = "mpd spectrum"
 
 #
 ##
@@ -124,42 +124,40 @@ visualizer_sync_interval = "30"
 ## you need to compile ncmpcpp with fftw3 support.
 ##
 #
-visualizer_type = "ellipse"
-#visualizer_type = "spectrum"
-#(spectrum/wave)
-#
-#⬤
-#progressbar_look = "=>"
-#progressbar_look = "─╼─"
-#progressbar_look = "╼·"◍
-#progressbar_look = "░●─"
-#progressbar_look = "▬▒─"
-#progressbar_look = "▒▓─"
-#progressbar_look = "▒▓░"
-#visualizer_look = "○●"
-#visualizer_look = "◬◘"
-#visualizer_look = "◆│"
-#isualizer_look = "░▒"
-#visualizer_color = "cyan"
-#visualizer_look                       = "▬▬"
-#visualizer_look = "◍▩"
-#visualizer_look = "◍▪"
-visualizer_look = "○●"
-#visualizer_look = "▪●"
-
+#visualizer_type = "ellipse"
+visualizer_type = wave
+# visualizer_type = "spectrum"
 # wave
 # wave_filled
 # specrtrum
 # ellipse 
+#(spectrum/wave)
+#
+#
+visualizer_look = "◼▮"
+#visualizer_look = "▬●""
+#visualizer_look = "▪●"
+#visualizer_look = "○●"
+#visualizer_look = "╼·"
+#visualizer_look = "▒─"
+#visualizer_look = "▓─"
+#visualizer_look = "▒░"
+#visualizer_look = "○●"
+#visualizer_look = "◬◘"
+#visualizer_look = "◆│"
+#cisualizer_look = "░▒"
+#visualizer_look = "=>"
+#visualizer_look = "─╼"
+#visualizer_look = "▬▬"
+#visualizer_look = "◍▩"
+#visualizer_look = "◍▪"
+#visualizer_look = "●⬤"
 
-#visualizer_look = ".."
-visualizer_color         = "blue, cyan, cyan, red, cyan, cyan, green, green, cyan, green, green, yellow, yellow, cyan, yellow, yellow, magenta, magenta, cyan, magenta, magenta, red, red, cyan, red, red, cyan, red, red"
+#visualizer_color = "cyan"
+visualizer_color  = "blue, cyan, cyan, red, cyan, cyan, green, green, cyan, green, green, yellow, yellow, cyan, yellow, yellow, magenta, magenta, cyan, magenta, magenta, red, red, cyan, red, red, cyan, red, red"
 #visualizer_color = "green, cyan, blue, magenta, red, yellow, green, cyan, blue, magenta, red, yellow, green, cyan, blue, magenta, red, yellow, green, cyan, blue, magenta, red, yellow, green, cyan, blue, magenta, red, yellow, green, cyan, blue, magenta, red, yellow"
-#visualizer_color         = "black, blue, cyan, magenta, cyan, red, cyan, magenta, cyan, green, magenta, green, cyan, green, magenta, green, yellow, magenta, yellow, cyan, yellow, magenta, yellow, magenta, red, magenta, cyan, magenta, red, magenta, red, red, cyan, red, red, cyan, red, red"
-
-
-
-##visualizer_color = "yellow"
+#visualizer_color = "black, blue, cyan, magenta, cyan, red, cyan, magenta, cyan, green, magenta, green, cyan, green, magenta, green, yellow, magenta, yellow, cyan, yellow, magenta, yellow, magenta, red, magenta, cyan, magenta, red, magenta, red, red, cyan, red, red, cyan, red, red"
+#visualizer_color = "yellow"
 #visualizer_color = "cyan"
 #
 ##### system encoding #####
