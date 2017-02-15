@@ -58,10 +58,14 @@ aliases_bash = '/tmp/aliases.bash'	# temp file to write bash aliases to
 File.open(aliases_bash, 'w') do |f|
 	
 	# Write each key/value pair in the bash alias format
-	# TODO: Detect whether to wrap the alias in single or double quotes
-
-  	aliases_yaml.each_pair do |alias_name, command|
-    	f.puts %Q[alias #{alias_name}="#{command}"]
+	aliases_yaml.each_pair do |alias_name, command|
+  		# Detect whether to wrap the alias in single or double quotes
+  		if command.include? "$("
+  			quote = "'" # single quotes
+  		else 
+			quote = '"' # double quotes
+  		end
+    	f.puts %Q[alias #{alias_name}=#{quote}#{command}#{quote}]
   	end
 
 end

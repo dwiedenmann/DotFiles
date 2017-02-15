@@ -40,7 +40,7 @@ packages.arch:
     paclo:          pacman -Qdt     # list orphans
     pacro:        > # remove orphans
                     paclo &&
-                    sudo pacman -Rns $(pacman -Qtdq) 
+                    sudo pacman -Rns $(pacman -Qtdq)
     pacc:           pacman -Scc     # clean cache
     paclf:          pacman -Ql      # list files
 
@@ -126,7 +126,6 @@ code.git:
     gsi:             git submodule init
     gsu:             git submodule update
     gclone:          git clone -v --progress
-
 
 
 
