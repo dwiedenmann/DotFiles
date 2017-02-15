@@ -1,0 +1,147 @@
+#######################################################################################################################
+#            ___                                               __
+#     ____ _/ (_)___ _________  _____   __  ______ _____ ___  / /
+#    / __ `/ / / __ `/ ___/ _ \/ ___/  / / / / __ `/ __ `__ \/ / 
+#   / /_/ / / / /_/ (__  )  __(__  )  / /_/ / /_/ / / / / / / /  
+#   \__,_/_/_/\__,_/____/\___/____/   \__, /\__,_/_/ /_/ /_/_/   
+#                                    /____/                   
+#                                                      
+#######################################################################################################################
+#
+#   Shell Aliases in YAML format
+#       Called By    :    ~/.bash_aliases
+#       Ruby Parser  :  bin/ bash_aliases.rb
+#       YAML Aliases :    ~/.bash_aliases.yml
+#
+#   YAML Tutorial
+#       https://learnxinyminutes.com/docs/yaml/
+#
+#######################################################################################################################
+
+########################################
+packages.ubuntu: 
+########################################
+    install:        sudo apt-get install
+    update:         sudo apt-get update
+    upgrade:        sudo apt-get -u upgrade
+    agi:            sudo apt-get install
+    agu:            sudo apt-get update
+    agg:            sudo apt-get -u upgrade
+
+########################################
+packages.arch: 
+########################################
+    yaourt:         yaourt --sort w
+    pac:            pacman -S       # install
+    pacu:           pacman -Syu     # update, add 'a' to the list of letters to update AUR packages if you use yaourt
+    pacr:           pacman -Rs      # remove
+    pacs:           pacman -Ss      # search
+    paci:           pacman -Si      # info
+    paclo:          pacman -Qdt     # list orphans
+    pacro:        > # remove orphans
+                    paclo &&
+                    sudo pacman -Rns $(pacman -Qtdq) 
+    pacc:           pacman -Scc     # clean cache
+    paclf:          pacman -Ql      # list files
+
+########################################
+files.ls:   
+########################################
+    ls:              ls -hF --color      # add colors for filetype recognition
+    lx:              ls -lXB             # sort by extension
+    lk:              ls -lSr             # sort by size
+    la:              ls -Al              # show hidden files
+    lr:              ls -lR              # recursive ls
+    lt:              ls -ltr             # sort by date
+    ll:              ls -l               # long listing
+    la:              ls -A
+    l:               ls -CF
+    lm:              ls -al | more'      # pipe through 'more
+    lsize:           ls --sort=size -lhr # list by size
+    lsd:             ls -l | grep "^d"   # list only directories
+    lalf:            ls -alF
+
+
+########################################
+files.other:
+########################################
+    rm:              rm -i
+    cp:              cp -v -i
+    mv:              mv -i
+    h:               history | grep $1
+
+
+########################################
+files.search:
+########################################
+    findgrep:        find . | grep -i
+    findlinks:       find -type l -ls | sed 's/^.*[0-9][0-9] [.]\(\/[.].*\) \(->\|<-\) \(.*\)$/~\"\1\" \2 \"\3\"/'
+    qfind:           find . -name        # Quickly search for a file
+
+
+
+########################################
+navigation:
+########################################
+    ..:              cd ..
+    ...:             cd ../..
+    ....:            cd ../../..
+    .....:           cd ../../../..
+
+
+########################################
+system.power: 
+########################################
+    reboot:          sudo shutdown -r now
+    shutdown:        sudo shutdown -h now
+
+
+########################################
+code.git:
+########################################
+    # info
+    gs:              git status
+    gss:             git status -s
+    gd:              git diff
+    # Remotes
+    rem:             git remote -v
+    rset:            git remote set-url origin
+    # add/remove files
+    ga:              git add
+    gaa:             git add -A
+    # tags
+    gt:              git tag
+    # commit
+    gc:              git commit -m
+    amend:           git commit --amend
+    # pull/push
+    gpull:           git pull origin
+    # Branches
+    gb:              git branch -v
+    gbr:             git branch -r
+    gco:             git checkout
+    gnew:            git checkout -b
+    # submodules
+    gsm:             git submodule
+    gsi:             git submodule init
+    gsu:             git submodule update
+    gclone:          git clone -v --progress
+
+
+
+
+########################################
+apps:
+########################################
+
+
+    which:           type -all
+    pacman:          sudo pacman
+
+    figtime:         watch -n1 \"date '+%D%n%T'|figlet -k -f $1\"
+    #spaceused:       du -sm * | sort -nr | awk '"'"'$1>'"1"""
+
+    # temp workaround for gitkraken libcurl-compat issue
+    gitkrak:         LD_PRELOAD=/usr/lib/libcurl.so.3 gitkraken &
+
+    showtoiletfonts: for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.tlf; do j=${i##*/}; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done
