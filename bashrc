@@ -39,36 +39,82 @@
 #
 #######################################################################################################################
 
-
-#if [ -f `which powerline-daemon` ]; then
-#  powerline-daemon -q
-#  POWERLINE_BASH_CONTINUATION=1
-#  POWERLINE_BASH_SELECT=1
-#  . /usr/share/powerline/bash/powerline.sh
-#fi
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+ 
 
 clear
 
+########################################
+# Export Settings
+########################################
+export TIME_STYLE=long-iso	#ls --time-style=+"%Y-%m-%d %H:%M"
+export EDITOR=subl3
+# don't put duplicate lines in the history. See bash(1) for more options
+# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
+HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoreboth
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+ 
+# Pager
+#export PAGER=most
 
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+
+
+
+########################################
 # Alias definitions.
+########################################
 if [ -f ~/.bash_aliases ]; then
     #. ~/.bash_aliases
     source ~/.bash_aliases
 fi
  
+########################################
 # Colors
+########################################
 if [ -f ~/.dir_colors ]; then
-eval `dircolors ~/.dir_colors`
+	eval `dircolors ~/.dir_colors`
 fi
 
 
-#######################################################################################################################
+########################################
+# Prompt
+########################################
+
 # Powerline
-#######################################################################################################################
+if [ -f `which powerline-daemon` ]; then
 
-if [ -f /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh ]; then
-    source /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
+
+	powerline-daemon -q
+	POWERLINE_BASH_CONTINUATION=1
+	POWERLINE_BASH_SELECT=1
+	. /usr/share/powerline/bash/powerline.sh
+
+
 fi
+
+	if [ -f /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh ]; then
+	    source /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
+	fi
+
+#separator=''
+#PS1="$color_green_black\u$color_yellow_green$separator$color_yellow_black\h$color_red_yellow$separator$color_red_black\W$color_black_red$separator$color_reset"
+#if [ "$color_prompt" = yes ]; then
+#    PS1='\[\e[0;34m\]┌──[\[\e[0;32m\]\u\[\e[0;31m\]@\[\e[0;35m\]\h\[\e[0;34m\]]──\[\e[0;34m\][\[\e[0;32m\]\w\[\e[0;34m\]] \n└── \[\e[0;34m\]'
+#else
+#    PS1='┌────[\u@\h]────────────────────────────────────────[\t]────┐ \n└───>[${PWD}] \$ '
+#fi
+#unset color_prompt force_color_prompt
 
 if [ "`id -u`" -eq 0 ]; then
     PS1="\[\033[m\]|\[\033[1;35m\]\t\[\033[m\]|\[\e[1;31m\]\u\[\e[1;36m\]\[\033[m\]@\[\e[1;36m\]\h\[\033[m\]:\[\e[0m\]\[\e[1;32m\][\W]> \[\e[0m\]"
@@ -76,35 +122,10 @@ else
     PS1="\[\033[m\]|\[\033[1;35m\]\t\[\033[m\]|\[\e[1m\]\u\[\e[1;36m\]\[\033[m\]@\[\e[1;36m\]\h\[\033[m\]:\[\e[0m\]\[\e[1;32m\][\W]> \[\e[0m\]"
 fi
 
-#separator=''
-#PS1="$color_green_black\u$color_yellow_green$separator$color_yellow_black\h$color_red_yellow$separator$color_red_black\W$color_black_red$separator$color_reset"
 
-export EDITOR=subl3
-
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
- 
-# Pager
-#export PAGER=most
  
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
- 
-# don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoreboth
- 
-# append to the history file, don't overwrite it
-shopt -s histappend
- 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
- 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
  
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -114,6 +135,7 @@ shopt -s checkwinsize
 #     debian_chroot=$(cat /etc/debian_chroot)
 # fi
  
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -126,21 +148,18 @@ force_color_prompt=yes
  
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
+	    # We have color support; assume it's compliant with Ecma-48
+	    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	    # a case would tend to support setf rather than setaf.)
+	    color_prompt=yes
     else
-    color_prompt=
+	    color_prompt=
     fi
 fi
  
-#if [ "$color_prompt" = yes ]; then
-#    PS1='\[\e[0;34m\]┌──[\[\e[0;32m\]\u\[\e[0;31m\]@\[\e[0;35m\]\h\[\e[0;34m\]]──\[\e[0;34m\][\[\e[0;32m\]\w\[\e[0;34m\]] \n└── \[\e[0;34m\]'
-#else
-#    PS1='┌────[\u@\h]────────────────────────────────────────[\t]────┐ \n└───>[${PWD}] \$ '
-#fi
-#unset color_prompt force_color_prompt
+
+
+
  
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -155,19 +174,8 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    #alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
- 
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
 fi
  
-#######################################################################################################################
-# Aliases
-#######################################################################################################################
-
 
 #######################################################################################################################
 # Functions
@@ -190,9 +198,7 @@ dot_add(){
 
 anime(){
 	# animeImgs=(
-	# 		"~/.wallpapers/cleavage_hoshizora_rin_koizumi_hanayo_love_live__murota_yuuhei_possible_duplicate_thighhighs_yazawa_nico_9691x5945.jpg" 
-	# 		"/run/media/david/JAV/IR\ JAV/(ONGP-103)/46752088752507961681.jpg" 
-	# 	)
+		# 	)
 	# if [ -f "$1" ] ; then
 	# 	animeImg=$1
 	# else

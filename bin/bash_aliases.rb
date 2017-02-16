@@ -44,8 +44,8 @@ alises_groups = YAML.
 # Aliases are all merged into a single Hash according to the rules of Ruby's `Hash#merge`,
 # which silently overwrites duplicates. It may be a good idea to enhance this code with a
 # declarative block passed to `merge` that prevents data loss or at least warns the user.
-#aliases_yaml = alises_groups.values.reduce &:merge
-aliases_yaml = alises_groups.values.reduce({}, :merge)
+aliases_yaml = alises_groups.values.reduce &:merge
+#aliases_yaml = alises_groups.values.reduce({}, :merge)
 
 
 ############################################################
@@ -63,7 +63,7 @@ File.open(aliases_bash, 'w') do |f|
   		if command.include? "$("
   			quote = "'" # single quotes
   		else 
-			quote = '"' # double quotes
+			  quote = '"' # double quotes
   		end
     	f.puts %Q[alias #{alias_name}=#{quote}#{command}#{quote}]
   	end

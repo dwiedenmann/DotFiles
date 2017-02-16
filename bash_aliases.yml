@@ -16,6 +16,10 @@
 #   YAML Tutorial
 #       https://learnxinyminutes.com/docs/yaml/
 #
+#   The error "Implicit Conversion of String into Hash"
+#   means that you misformatted this file, perhaps leaving
+#   out a :
+#
 #######################################################################################################################
 
 ########################################
@@ -28,21 +32,28 @@ packages.ubuntu:
     agu:            sudo apt-get update
     agg:            sudo apt-get -u upgrade
 
+
 ########################################
 packages.arch: 
 ########################################
     yaourt:         yaourt --sort w
-    pac:            pacman -S       # install
-    pacu:           pacman -Syu     # update, add 'a' to the list of letters to update AUR packages if you use yaourt
-    pacr:           pacman -Rs      # remove
-    pacs:           pacman -Ss      # search
-    paci:           pacman -Si      # info
-    paclo:          pacman -Qdt     # list orphans
-    pacro:        > # remove orphans
+    pacman:         sudo pacman         # run pacman as su
+    pac:            pacman -S           # install
+    pacu:           pacman -Syu         # update, add 'a' to the list of letters to update AUR packages if you use yaourt
+    pacr:           pacman -Rs          # remove
+    pacs:           pacman -Ss          # search
+    paci:           pacman -Si          # info
+    paclo:          pacman -Qdt         # list orphans
+    pacro:          >                   # remove orphans
                     paclo &&
                     sudo pacman -Rns $(pacman -Qtdq)
-    pacc:           pacman -Scc     # clean cache
-    paclf:          pacman -Ql      # list files
+    pacc:           pacman -Scc         # clean cache
+    paclf:          pacman -Ql          # list files
+    fixit:          >
+                    sudo rm -f /var/lib/pacman/db.lck && 
+                    sudo pacman-mirrors -g &&
+                    sudo pacman -Syyuu  && 
+                    sudo pacman -Suu'
 
 ########################################
 files.ls:   
@@ -77,7 +88,14 @@ files.search:
     findgrep:        find . | grep -i
     findlinks:       find -type l -ls | sed 's/^.*[0-9][0-9] [.]\(\/[.].*\) \(->\|<-\) \(.*\)$/~\"\1\" \2 \"\3\"/'
     qfind:           find . -name        # Quickly search for a file
+#    which:           type -all
 
+
+########################################
+files.spaceused:
+########################################
+#   spaceused:       du -sm * | sort -nr | awk '"'"'$1>'"1"""
+    df:              df -h         # human readable sizes
 
 
 ########################################
@@ -132,15 +150,17 @@ code.git:
 ########################################
 apps:
 ########################################
-
-
-    which:           type -all
-    pacman:          sudo pacman
-
-    figtime:         watch -n1 \"date '+%D%n%T'|figlet -k -f $1\"
-    #spaceused:       du -sm * | sort -nr | awk '"'"'$1>'"1"""
-
     # temp workaround for gitkraken libcurl-compat issue
     gitkrak:         LD_PRELOAD=/usr/lib/libcurl.so.3 gitkraken &
 
+
+########################################
+fun:
+########################################
+    #figtime:         watch -n1 \"date '+%D%n%T'|figlet -k -f $1\"
     showtoiletfonts: for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.tlf; do j=${i##*/}; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done
+
+
+
+
+
