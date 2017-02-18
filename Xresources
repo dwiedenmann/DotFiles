@@ -40,7 +40,7 @@
 !      ┃ └────────────────┘   ┣━$HOME/ .profile
 !      ┃                      ┣━━━/etc/xprofile    			
 !      ┃                      ┗━$HOME/.xprofile 	
-!      ┃                        ┗━$HOME/.config/X11/xprofile.d/*
+!      ┃                        ┗━$HOME/.config/X11/xprofile.d/"*"
 !      ┃                            ┣━10-generate-xresources
 !      ┃                            ┣━10-xrandr
 !      ┃                            ┣━20-merge-xresources
@@ -54,7 +54,7 @@
 !      ┃ └────────────────┘   ┃ ╔═══════════════════╗           ┌──────────────┐	
 !      ┃                      ┗━╢ $HOME/.Xresources ║    <━━━━━━┥ You are here │
 !      ┃                        ╚╤══════════════════╝           └──────────────┘
-!      ┃                         ┗━$HOME/.config/X11/Xresources.d/*
+!      ┃                         ┗━$HOME/.config/X11/Xresources.d/"*"
 !      ┃                            ┣━10-fonts.Xresources
 !      ┃                            ┣━20-colors
 !      ┃                            ┣━30-terminal-termite
@@ -67,7 +67,7 @@
 !      ┃                      ┣━/etc/X11/Xmodmap
 !      ┃                      ┗━━━$HOME/.Xmodmap
 !      ┃ ┌────────────────┐
-!      ┣━┥ System Scripts ┝━━━━━/etc/X11/xinit/xinitrc.d/*
+!      ┣━┥ System Scripts ┝━━━━━/etc/X11/xinit/xinitrc.d/"*"
 !      ┃ └────────────────┘
 !      ┃ ┌────────────────┐
 !      ┗━┥ User Xsession  ┝━━━━━$HOME/.xsession

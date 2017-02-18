@@ -54,6 +54,8 @@ packages.arch:
                     sudo pacman-mirrors -g &&
                     sudo pacman -Syyuu  && 
                     sudo pacman -Suu'
+    packages:       pacman -Qqdn        # > pkglist_deps.txt
+#    sync:           pacman --force --asdeps -S $(< pkglist_deps.txt)
 
 ########################################
 files.ls:   
@@ -65,7 +67,7 @@ files.ls:
     lr:              ls -lR              # recursive ls
     lt:              ls -ltr             # sort by date
     ll:              ls -l               # long listing
-    lal:             ls -Al
+    lla:             ls -lA
     l:               ls -CF
     lm:              ls -al | more       # pipe through 'more
     lsize:           ls --sort=size -lhr # list by size
@@ -105,6 +107,13 @@ navigation:
     ...:             cd ../..
     ....:            cd ../../..
     .....:           cd ../../../..
+
+
+########################################
+X11: 
+########################################
+    xres:            xrdb ~/.Xresources
+    xresm:           xrdb -merge ~/.Xresources
 
 
 ########################################

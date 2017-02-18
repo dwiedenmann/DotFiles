@@ -19,18 +19,31 @@
 !----------------------------------------------------------------------------------------------------------------------
 
 
-
 !=======================================
 ! Fonts
 !---------------------------------------
 !URxvt*font: xft:gohufont:size=11:antialias=false, \
 !            xft:Symbola:pixelsize=14:antialias=true:hinting=slight
 
-!URxvt.font: 				xft:Envy Code R:pixelsize=14,xft:Symbola
-URxvt.font: 				xft:Hack-Regular For Powerline:pixelsize=16,xft:Symbola
+!URxvt*faceName:				Font Awesome
+URxvt.font: 				xft:Hack-Regular For Powerline:pixelsize=16,xft:Awesome
+!URxvt.font: 				xft:Source Code Pro-Regular For Powerline:pixelsize=16,xft:Awesome for Powerline
+!URxvt.font: 				xft:Envy Code R For Powerline:pixelsize=14,xft:Symbola
+!URxvt.font: 				xft:Awesome Regular:pixelsize=16,xft:Symbola for Powerline
+!URxvt.font: 				xft:Font\ Awesome:pixelsize=16,xft:Symbola for Powerline
+!URxvt.font: 				xft:Hack-Regular for Powerline:pixelsize=16,xft:Symbola for Powerline
+!URxvt.font: 				xft:DejaVu Sans Mono:style=Book:pixelsize=12,xft:Symbola
+
 !URxvt*font: 				xft:Terminus For Powerline:pixelsize=14:slant=italic,xft:Symbola
 !URxvt.font: 				-*-terminus-medium-*-*-*-*-140-*-*-*-*-iso8859-1
 !URxvt.font: 				xft:DejaVu Sans Mono:pixelsize=12
+
+!URxvt.letterSpace: true
+!URxvt.font:             xft:Font\ Awesome:antialias=true:pixelsize=12
+!URxvt.font:             xft:Droid\ Sans\ Mono:pixelsize=12:Regular,xft:Font\ Awesome:antialias=true:pixelsize=12
+!URxvt.font: xft:FontAwesome:size=12,xft:terminesspowerline:size=12
+!URxvt.boldFont: xft:FontAwesome:style=Bold:size=12
+
 
 URxvt*boldFont: 
 URxvt*italicFont: 
@@ -135,6 +148,8 @@ URxvt.keysym.C-slash:  		font-size:show
 
 !URxvt.iso14755: 			false
 !URxvt*altSendsEscape: 		true
+
+URxvt*termName: rxvt-unicode-256color
 
 
 !======================================================================================================================
