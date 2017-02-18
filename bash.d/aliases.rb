@@ -34,7 +34,7 @@ $stdout.sync = true
 # Load the aliases from the YAML source file
 ############################################################
 
-aliases_file = '~/.bash_aliases.yml' 	# Bash Aliases in YAML format
+aliases_file = '~/.bash.d/aliases.yaml' 	# Bash Aliases in YAML format
 
 # Load the top level alias groups
 alises_groups = YAML.

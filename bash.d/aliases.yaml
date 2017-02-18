@@ -58,16 +58,16 @@ packages.arch:
 ########################################
 files.ls:   
 ########################################
-    ls:              ls -hF --color      # add colors for filetype recognition
+    ls:              ls -hF --color --g  # add colors for filetype recognition
     lx:              ls -lXB             # sort by extension
     lk:              ls -lSr             # sort by size
-    la:              ls -Al              # show hidden files
+    la:              ls -A               # show hidden files
     lr:              ls -lR              # recursive ls
     lt:              ls -ltr             # sort by date
     ll:              ls -l               # long listing
-    la:              ls -A
+    lal:             ls -Al
     l:               ls -CF
-    lm:              ls -al | more'      # pipe through 'more
+    lm:              ls -al | more       # pipe through 'more
     lsize:           ls --sort=size -lhr # list by size
     lsd:             ls -l | grep "^d"   # list only directories
     lalf:            ls -alF
