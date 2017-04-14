@@ -14,6 +14,13 @@ application/zip=org.gnome.FileRoller.desktop;
 text/x-java=sublime_text_3.desktop;
 application/x-theme=sublime_text_3.desktop;
 text/x-matlab=sublime_text_3.desktop;
+application/x-cd-image=userapp-mpv-VJFMVY.desktop;
+video/x-ms-wmv=userapp-mpv-UZAXVY.desktop;
+video/x-matroska=userapp-mpv-Q3AEWY.desktop;
+application/x-font-ttf=userapp-subl-XEZPWY.desktop;
 
 [Default Applications]
 video/mp4=mpv.desktop
+application/x-cd-image=userapp-mpv-VJFMVY.desktop
+video/x-ms-wmv=userapp-mpv-UZAXVY.desktop
+video/x-matroska=userapp-mpv-Q3AEWY.desktop
