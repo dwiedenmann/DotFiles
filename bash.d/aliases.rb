@@ -60,10 +60,12 @@ File.open(aliases_bash, 'w') do |f|
 	# Write each key/value pair in the bash alias format
 	aliases_yaml.each_pair do |alias_name, command|
   		# Detect whether to wrap the alias in single or double quotes
-  		if command.include? "$("
+  		if command.include? "$(" #|| command.start_with?('"') || command.end_with?('"')
   			quote = "'" # single quotes
-  		else 
+  		#elsif command.start_with?("'") || command.end_with?("'")
+      else
 			  quote = '"' # double quotes
+      #else quote = '"'
   		end
     	f.puts %Q[alias #{alias_name}=#{quote}#{command}#{quote}]
   	end

@@ -166,7 +166,7 @@ apps:
 ########################################
 fun:
 ########################################
-    #figtime:         watch -n1 \"date '+%D%n%T'|figlet -k -f $1\"
+    figtime:         watch -n1 \"date '+%D%n%T'|figlet -k -f $1\"
     showtoiletfonts: for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.tlf; do j=${i##*/}; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done
 
 

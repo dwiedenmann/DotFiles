@@ -88,7 +88,6 @@ gaps        outer   $outerGaps
 #smart_gaps          on
 #smart_borders       on
 
-
 #######################################################################################################################
 # Set Variables from Xresources
 #######################################################################################################################
@@ -205,6 +204,9 @@ assign [class="(?i)Atom"] 		workspace $ws_3
 assign [class="(?i)gitkraken"] 	workspace $ws_13
 assign [class="(?i)Deluge"] 	workspace $ws_22
 assign [class="(?i)XnView"] 	workspace $ws_10
+#assign [class="(?i)Mpv"] and title="(?i).*[A-Z][A-Z][A-Z]-[0-9][0-9].*"] workspace $ws_10
+#for_window [class="(?i).*Mpv.*"] and title="(?i).*[A-Z][A-Z][A-Z]-[0-9][0-9].*"] move window to workspace $ws_10
+#for_window [class="(?i).*mpc.*" and title="(?i).*[A-Z][A-Z][A-Z]-[0-9][0-9].*"] move window to workspace $ws_10
 #assign [class="^gitkrakaken$" instance="^irssi$"] workspace $ws_13
 
 
@@ -391,20 +393,41 @@ set $news       "^(Liferea|Corebird)$"
 
 
 # Open specific applications in floating mode
-set $floating_windows   "^(Transmission-gtk|plank|Mpv|Mpc|Vlc|(?i)virtualbox|Pamac-manager|Lxappearance|GParted|Galculator|File Transfer*|alsamixer|tty-clock|Clipgrab|Peek|Nitrogen|Yad|Xfce4-appfinder|Simplescreenrecorder|Smplayer|Blink)$"
+set $floating_windows   "^(Transmission-gtk|plank|Mpv|Mpc|Vlc|Pamac-manager|Lxappearance|GParted|Galculator|File Transfer*|alsamixer|tty-clock|Clipgrab|Peek|Nitrogen|Yad|Xfce4-appfinder|Simplescreenrecorder|Smplayer|Blink)$"
+#set $floating_windows   "^(Transmission-gtk|plank|Mpv|Mpc|Vlc|(?i)virtualbox|Pamac-manager|Lxappearance|GParted|Galculator|File Transfer*|alsamixer|tty-clock|Clipgrab|Peek|Nitrogen|Yad|Xfce4-appfinder|Simplescreenrecorder|Smplayer|Blink)$"
 #set $floating_windows "^(Speedcrunch|Peek|Nitrogen|Yad|Xfce4-appfinder|Simplescreenrecorder|Smplayer|Blink)$"
 set $floating_types     "notification"
 set $floating_roles     "^(pop-up|task_dialog)"
 for_window [window_type=$floating_types]    floating enable
 for_window [window_role=$floating_roles]    floating enable
-for_window [class=$floating_windows]        floating enable
-for_window [title=$floating_windows]        floating enable
-for_window [class="plank"]                  floating enable
-for_window [instance=notepad] 				sticky 	 enable
+#for_window [class=$floating_windows]        floating enable
+#for_window [instance=notepad] 				sticky 	 enable
+
+#for_window [class=$floating_windows]        floating enable
+
+for_window [class="(?i)VirtualBox" title="^$"] floating enable
+for_window [class="(?i)VirtualBox" title="^(?i)VirtualBox$"] floating enable
+for_window [class="(?i)VirtualBox" title="^(?i)Oracle VM VirtualBox Manager$"] layout tabbed
+#floating enable
+#for_window [class="(?i)VirtualBox" title="(?i)[Running] - Oracle VM VirtualBox$"] fullscreen enable; border pixel $border+1;
+for_window [class="(?i)VirtualBox" title="(?i)[Running] - Oracle VM VirtualBox$"] layout tabbed
+#, focus
+
+#for_window [class="(?i)VirtualBox"] floating enable
+#for_window [class="(?i)VirtualBox"] floating enable; resize shrink width 10000px; resize grow width 1600px; resize shrink height 10000px; resize grow height 1200px;
+#, move absolute center
 
 # Open specific applications in floating mode
 #for_window  [class="plank"]     floating enable,move absolute center 
 #for_window [class=""] floating enable
+
+########################################
+# VirtualBox Notes
+########################################
+# VBoxManage modifyvm "Windows" --vram 256
+# VBoxManage controlvm "Windows" setvideomodehint 2560 1440 24
+# VBoxManage controlvm "Windows" setvideomodehint 3200 1800 24
+# VBoxManage controlvm "Windows" setvideomodehint 3800 2000 24 #with gaps and both polybars i3 gives 2830x2060
 
 
 ########################################################################################################################
@@ -769,7 +792,7 @@ exec_always --no-startup-id ~/bin/i3restart.sh
 # (relative to i3’s current working directory or absolute) to a JSON file.
 # append_layout <path>
 #
-$execnsi "i3-msg 'workspace 1; append_layout /home/michael/.i3/workspace-1.json'"
+#$execnsi "i3-msg 'workspace 1; append_layout /home/david/.i3/workspace-1.json'"
 
 
 

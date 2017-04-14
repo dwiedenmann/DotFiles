@@ -223,7 +223,7 @@ EOF
 
 }
 
-drawPacmanGhosts;
+
 
 
 
