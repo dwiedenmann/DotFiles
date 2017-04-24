@@ -125,6 +125,7 @@
 #include "/home/david/.config/X11/Xresources.d/30-terminal-urxvt.Xresources"
 #include "/home/david/.config/X11/Xresources.d/40-launcher-dmenu.Xresources"
 #include "/home/david/.config/X11/Xresources.d/40-launcher-rofi.Xresources"
+#include "/home/david/.config/X11/Xresources.d/50-launcher-i3.Xresources"
 ! END GENERATED CONTENT
 !------------------------
 

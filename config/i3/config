@@ -153,41 +153,44 @@ set $monitor_3 HDMI-1
 ################################################################################
 # Workspaces Names
 ################################################################################
+
+#set_from_resource $base00 color0  #0b1c2c
+
 # Center Monitor
-set $ws_1        		"1: Explore"
-set $ws_2           	"2: Code"
-set $ws_3           	"3: Atom"
-set $ws_4           	"4: Play"
-set $ws_5 				"5: C5"
-set $ws_6 				"6: C6"
-set $ws_7 				"7: C7"
-set $ws_8 				"8: C8"
-set $ws_9 				"9: C9"
-set $ws_10 				"10:C0"
+set_from_resource $ws_1     i3.ws1 		"1: Explore"
+set_from_resource $ws_2     i3.ws2 		"2: Code"
+set_from_resource $ws_3     i3.ws3 		"3: Atom"
+set_from_resource $ws_4     i3.ws4 		"4: Play"
+set_from_resource $ws_5 	i3.ws5 		"5: Draw"
+set_from_resource $ws_6 	i3.ws6 		"6: C6"
+set_from_resource $ws_7 	i3.ws7 		"7: C7"
+set_from_resource $ws_8 	i3.ws8 		"8: VBox"
+set_from_resource $ws_9 	i3.ws9 		"9: JAV"
+set_from_resource $ws_10 	i3.ws10 	"10: IR"
 
 # Left Monitor
-set $ws_11        		"11:Web"
-set $ws_12           	"12:Watch"
-set $ws_13           	"13:Git"
-set $ws_14           	"14:Research"
-set $ws_15 				"15:Planning"
-set $ws_16 				"16:L6"
-set $ws_17 				"17:L7"
-set $ws_18 				"18:L8"
-set $ws_19 				"19:L9"
-set $ws_20 				"20:L0"
+set_from_resource $ws_11    i3.ws11 	"11: Web"
+set_from_resource $ws_12    i3.ws12 	"12: Watch"
+set_from_resource $ws_13    i3.ws13 	"13: Git"
+set_from_resource $ws_14    i3.ws14 	"14: Research"
+set_from_resource $ws_15 	i3.ws15 	"15: Planning"
+set_from_resource $ws_16 	i3.ws16 	"16: L6"
+set_from_resource $ws_17 	i3.ws17 	"17: L7"
+set_from_resource $ws_18 	i3.ws18 	"18: L8"
+set_from_resource $ws_19 	i3.ws19 	"19: L9"
+set_from_resource $ws_20 	i3.ws20 	"20: L0"
 
 # Right Monitor
-set $ws_21        		"21:Terminals"
-set $ws_22           	"22:Files"
-set $ws_23           	"23:Music"
-set $ws_24           	"24:Chat"
-set $ws_25				"25:R5"
-set $ws_26				"26:R6"
-set $ws_27				"27:R7"
-set $ws_28				"28:R8"
-set $ws_29				"29:R9"
-set $ws_30				"30:R0"
+set_from_resource $ws_21    i3.ws21 	"21: Terminals"
+set_from_resource $ws_22    i3.ws22 	"22: Files"
+set_from_resource $ws_23    i3.ws23 	"23: Music"
+set_from_resource $ws_24    i3.ws24 	"24: Chat"
+set_from_resource $ws_25	i3.ws25 	"25: R5"
+set_from_resource $ws_26	i3.ws26 	"26: R6"
+set_from_resource $ws_27	i3.ws27 	"27: R7"
+set_from_resource $ws_28	i3.ws28 	"28: R8"
+set_from_resource $ws_29	i3.ws29 	"29: R9"
+set_from_resource $ws_30	i3.ws30 	"30: R0"
 
 set $ws_empty 			"Desktop"
 
@@ -261,6 +264,7 @@ bindsym 	$mod+Shift+8 		move container to workspace $ws_8
 bindsym 	$mod+Shift+9 		move container to workspace $ws_9
 bindsym 	$mod+Shift+0 		move container to workspace $ws_10
 
+
 ################################################################################
 # Left Monitor
 ################################################################################
@@ -299,6 +303,7 @@ bindsym 	$mod+$ctrl+Shift+8 	move container to workspace $ws_18
 bindsym 	$mod+$ctrl+Shift+9 	move container to workspace $ws_19
 bindsym 	$mod+$ctrl+Shift+0 	move container to workspace $ws_20
 
+
 ################################################################################
 # Right Monitor
 ################################################################################
@@ -336,6 +341,8 @@ bindsym 	$mod+$alt+Shift+7 	move container to workspace $ws_27
 bindsym 	$mod+$alt+Shift+8 	move container to workspace $ws_28
 bindsym 	$mod+$alt+Shift+9 	move container to workspace $ws_29
 bindsym 	$mod+$alt+Shift+0 	move container to workspace $ws_20
+
+
 ################################################################################
 
 
@@ -354,6 +361,12 @@ bindsym 	$mod+$alt+Shift+0 	move container to workspace $ws_20
 # (effectively toggles when you only have two outputs)
 bindsym $mod+Shift+bracketleft  			move workspace to output left
 bindsym $mod+Shift+bracketright 			move workspace to output right
+
+bindsym $mod+$ctrl+Right  					workspace next
+bindsym $mod+$ctrl+Left 					workspace prev
+
+#bindsym	$mod+a 								exec "i3-sensible-terminal -e ~/bin/i3workspace.sh"
+bindsym	$mod+a 								exec ~/bin/i3workspace.sh
 
 #bindsym $mod+Shift+ 		i3-msg workspace next_on_output
 bindsym --whole-window $mod+Button4 		workspace next_on_output 
@@ -783,7 +796,7 @@ exec_always --no-startup-id ~/bin/i3restart.sh
 # a quick look at the output, then save it to a file and tweak it a little bit:
 # required optional dependency: perl-anyevent-i3
 #
-# i3-save-tree --workspace 1 > ~/.config/i3/workspace-1.json
+# i3-save-tree --workspace 1 > ~/.config/i3/layouts/workspace-1.json
 
 ##############################
 # 2. Restoring the layout
@@ -792,9 +805,9 @@ exec_always --no-startup-id ~/bin/i3restart.sh
 # (relative to i3’s current working directory or absolute) to a JSON file.
 # append_layout <path>
 #
-#$execnsi "i3-msg 'workspace 1; append_layout /home/david/.i3/workspace-1.json'"
-
-
+#$execnsi "i3-msg 'workspace 1; append_layout /home/david/.i3/layouts/workspace-1.json'"
+#i3-msg "workspace 1; append_layout /home/david/.config/i3/layouts/workspace-1.json"
+# google-chrome-stable twitter.com --new-window &
 
 #######################################################################################################################
 #   [-|\||) ()|= |_||\|[-
