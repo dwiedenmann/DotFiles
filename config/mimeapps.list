@@ -20,6 +20,7 @@ video/x-matroska=userapp-mpv-Q3AEWY.desktop;
 application/x-font-ttf=userapp-subl-XEZPWY.desktop;
 
 [Default Applications]
+image/jpeg=feh.desktop
 video/mp4=mpv.desktop
 application/x-cd-image=userapp-mpv-VJFMVY.desktop
 video/x-ms-wmv=userapp-mpv-UZAXVY.desktop

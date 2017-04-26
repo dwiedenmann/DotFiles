@@ -96,8 +96,9 @@ files.search:
 ########################################
 files.spaceused:
 ########################################
-#   spaceused:       du -sm * | sort -nr | awk '"'"'$1>'"1"""
-    df:              df -h         # human readable sizes
+    spaceused:       du -sm * | sort -nr | awk '$1>1'
+    ncdu:            ncdu -x            # ignore mount points
+    df:              df -h              # human readable sizes
 
 
 ########################################

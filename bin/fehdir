@@ -1,0 +1,15 @@
+#!/bin/bash
+
+fehurl=$1
+
+# get the dir
+fehdir=$(dirname "$fehurl")
+
+# call feh
+#fehcmd="feh --start-at \"$fehurl\" \"$dir\""
+
+# call feh
+feh --start-at "$fehurl" "$fehdir"
+
+
+

@@ -181,6 +181,7 @@ dots="$colpath/dots.txt"
 del="-d' '"
 si="/dev/stdin"
 echo $reset$wrapoff
+
 # paste $pacman $dots -d ""\
 #   | paste $s1 $ghost \
 #   | paste $s1 $ghost \
@@ -190,7 +191,7 @@ echo $reset$wrapoff
 #   | paste /dev/stdin $ghost
 
 # paste <<< paste $pacman \
-#     <<< paste $dots -d" " \
+#       <<< paste $dots -d" " \
 #       <<< paste $ghost \
 #       <<< paste $ghost -d" " \
 #       <<< paste $ghost \

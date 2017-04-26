@@ -19,6 +19,11 @@ then
     compton -b --config ~/.config/compton.conf
 fi
 
+if ! pgrep -x "plank" > /dev/null
+then
+    plank&
+fi
+
 # Network Manager Applet
 nm-applet&
 
@@ -41,35 +46,33 @@ nm-applet&
 
 # Launch Default Workspaces
 
-i3workspace.sh 21	& # Terminals
-sleep 2
-i3workspace.sh 22	& # Files
-sleep 2
-i3workspace.sh 23	& # Music
-sleep 2
+# i3workspace.sh 21	& # Terminals
+# sleep 2
+# i3workspace.sh 22	& # Files
+# sleep 2
+# i3workspace.sh 23	& # Music
+# sleep 2
 
-i3workspace.sh 11	& # Web
-sleep 2
-i3workspace.sh 12	& # Watch
-sleep 2
-i3workspace.sh 13	& # Git
-sleep 2
-
-
-i3workspace.sh 1	& # Explore
-sleep 2
-i3workspace.sh 2	& # Code
-sleep 2
-i3workspace.sh 3	& # Atom
-sleep 2
+# i3workspace.sh 11	& # Web
+# sleep 2
+# i3workspace.sh 12	& # Watch
+# sleep 2
+# i3workspace.sh 13	& # Git
+# sleep 2
 
 
+# i3workspace.sh 1	& # Explore
+# sleep 2
+# i3workspace.sh 2	& # Code
+# sleep 2
+# i3workspace.sh 3	& # Atom
+# sleep 2
 
 
-i3-msg "workspace --no-auto-back-and-forth number 1"
+# i3-msg "workspace --no-auto-back-and-forth number 1"
 
 # Launch Rofi
-rofi -show run &
+# rofi -show run &
 
 #set -e
 
