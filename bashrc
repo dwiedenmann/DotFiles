@@ -47,20 +47,17 @@ clear
 
 # Execute all .sh files in ~/.bash.d
 for i in $HOME/.bash.d/*.sh; do 
+	#echo "Sourcing $i"
 	source $i; 
-	echo "Sourcing $i"
 done
 unset i
 
-
-#archey3
-neofetch
 
 #figlet -f slant "Hello World" | lolcat
 
 drawPacmanGhosts;
 
-fortune | lolcat
+
 
 
 
