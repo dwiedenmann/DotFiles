@@ -187,8 +187,11 @@ class Workspaces(InheritDb):
 		for k, v in self._storage.items():
 			workspace = Workspace(k, v)
 			workspace.config = self.config
+			print(workspace)
 			if (workspace.autostart == True):
 				workspace.open()
+				# return to the previously selected workspace
+				i3.i3msg('workspace back_and_forth')
 
 	def openCurrent(self):
 		ws = i3.getCurrentWorkspace()
@@ -232,7 +235,7 @@ class Workspace(object):
 		self.workspaceValue = workspaceValue
 		self.layout 		= self.workspaceValue["layout"]
 		try:
-			if (self.workspaceValue["autostart"] == True):
+			if (self.workspaceValue["start"] == True):
 				self.autostart = True
 		except KeyError as exc:
 			self.autostart = False
@@ -256,8 +259,6 @@ class Workspace(object):
 		# Wait until all windows have opened before exiting
 		i3.UnswallowedWait()
 
-		# return to the previously selected workspace
-		i3.i3msg('workspace back_and_forth')
 
 	def getOpenCmd(self):
 		"""
