@@ -366,7 +366,8 @@ bindsym $mod+$ctrl+Right  					workspace next
 bindsym $mod+$ctrl+Left 					workspace prev
 
 #bindsym	$mod+a 								exec "i3-sensible-terminal -e ~/bin/i3workspace.sh"
-bindsym	$mod+a 								exec ~/bin/i3workspace.sh
+bindsym	$mod+a 								exec ~/bin/i3workspace.py --current
+bindsym $mod+$ctrl+a 						focus parent; focus parent; kill
 
 #bindsym $mod+Shift+ 		i3-msg workspace next_on_output
 bindsym --whole-window $mod+Button4 		workspace next_on_output 

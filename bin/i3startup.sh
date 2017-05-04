@@ -46,18 +46,8 @@ nm-applet&
 
 # Launch Default Workspaces
 
-$HOME/bin/i3workspace.sh 21 	# Terminals
-$HOME/bin/i3workspace.sh 22 	# Files
-$HOME/bin/i3workspace.sh 23 	# Music
+$HOME/bin/i3workspace.py --auto 	# Launch Automatic Workspaces
 
-
-$HOME/bin/i3workspace.sh 11		# Web
-$HOME/bin/i3workspace.sh 12		# Watch
-$HOME/bin/i3workspace.sh 13		# Git
-
-$HOME/bin/i3workspace.sh 1		# Explore
-$HOME/bin/i3workspace.sh 2		# Code
-$HOME/bin/i3workspace.sh 3		# Atom
 
 echo "Done" >> $HOME/i3.log
 
