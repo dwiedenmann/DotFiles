@@ -101,6 +101,13 @@ class Config(object):
 				nargs 	= '+'
 			)
 
+		# Create a listapps subcommand       
+		parser.add_argument(
+				'--save', '-s',
+				help 	= 'Save workspace with user supplied argument',
+				nargs 	= '*'
+			)
+
 		# If called with no arguments provide help
 		if len(sys.argv) <= 1:
 		    sys.argv.append('--help')
@@ -123,6 +130,12 @@ class Config(object):
 			for ws in options.number:
 				self.workspaces.openOne(ws)
 
+		# Open Selected workspace(s)
+		elif options.save  != None:
+			if options.save == []:
+				options.save = [i3.getCurrentWorkspace()]
+			for ws in options.save:
+				self.workspaces.saveOne(ws)
 		return
 
 		# print(self.programs)
@@ -179,6 +192,17 @@ class Workspaces(InheritDb):
 			if (arg.isdigit() and workspace.number == int(arg)
 				or workspace.name == arg):
 				workspace.open()
+
+	def saveOne(self, arg):
+		"""
+		Save a single workspace
+		"""	
+		for k, v in self._storage.items():
+			workspace = Workspace(k, v)
+			workspace.config = self.config
+			if (arg.isdigit() and workspace.number == int(arg)
+				or workspace.name == arg):
+				workspace.save()
 
 	def openAutostart(self):
 		"""
@@ -244,6 +268,22 @@ class Workspace(object):
 		except KeyError as exc:
 			self.screen = None
 
+	def save(self):
+		"""
+		Save the workspace using i3-savetree
+		"""
+
+		# Print the workspace
+		print(self)
+
+		# Prepare the Save Command
+		args = "--workspace {0} > {1}/workspace-{0}.json".format(self.number, i3layoutsDir)
+
+		# Send the request to i3-msg
+		i3.i3savetree(args)
+		
+#		# Wait until all windows have opened before exiting
+#		i3.UnswallowedWait()
 
 	def open(self):
 		"""
@@ -369,11 +409,24 @@ class i3(object):
 		#print(ws)
 		return ws
 
+
 	def i3msg(args):
 		"""
 		Wrapper for call to subprocess.check_output to redirect stderr to /dev/null
 		"""
-		cmd = "i3-msg {0}".format(args)
+		return i3.i3helper("i3-msg", args)
+
+	def i3savetree(args):
+		"""
+		Wrapper for call to subprocess.check_output to redirect stderr to /dev/null
+		"""
+		return i3.i3helper("i3-save-tree", args)
+
+	def i3helper(exe, args):
+		"""
+		Wrapper for call to subprocess.check_output to redirect stderr to /dev/null
+		"""
+		cmd = "{0} {1}".format(exe, args)
 		FNULL = open(os.devnull, 'w')
 		try:
 			subprocess.check_output(cmd, shell=True, stderr=FNULL)		

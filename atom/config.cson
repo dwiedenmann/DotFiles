@@ -28,11 +28,11 @@
       "base16-syntax"
     ]
   editor:
-    fontSize: 20
+    fontSize: 25
   "exception-reporting":
     userId: "eef5ee5e-8390-e87d-4011-dee333f9409f"
   linter:
-    errorPanelHeight: 131
+    errorPanelHeight: 65
   "linter-pylint":
     executable: "pylint3"
     rcFile: "%f"

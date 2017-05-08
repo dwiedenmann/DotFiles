@@ -1,5 +1,9 @@
 #!/bin/bash
-
+if [[ ! -f $1 ]]; then
+    echo "$0: first argument is not a file" >&2
+    exit 1
+fi
+ 
 fehurl=$1
 
 # get the dir
@@ -9,7 +13,17 @@ fehdir=$(dirname "$fehurl")
 #fehcmd="feh --start-at \"$fehurl\" \"$dir\""
 
 # call feh
-feh --start-at "$fehurl" "$fehdir"
+# -F --fullscreen
+# -P --cache-thumbnails
+# -d --draw-filename
+# -e --font
+# -p --preload
+# --draw-exif 
+feh --info "file '$1'" -FdP -e DejaVuSans/20 --start-at "$fehurl" "$fehdir"
 
+#feh . --start-at "./$1" --draw-exif  --info file -F -P -d -e DejaVuSans/20 
 
+########################################################################################################################
+#	[-|\||) ()|= |_||\|[-
+########################################################################################################################
 

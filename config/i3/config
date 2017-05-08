@@ -157,13 +157,13 @@ set $monitor_3 HDMI-1
 #set_from_resource $base00 color0  #0b1c2c
 
 # Center Monitor
-set_from_resource $ws_1     i3.ws1 		"1: Explore"
-set_from_resource $ws_2     i3.ws2 		"2: Code"
-set_from_resource $ws_3     i3.ws3 		"3: Atom"
-set_from_resource $ws_4     i3.ws4 		"4: Play"
-set_from_resource $ws_5 	i3.ws5 		"5: Draw"
-set_from_resource $ws_6 	i3.ws6 		"6: C6"
-set_from_resource $ws_7 	i3.ws7 		"7: C7"
+set_from_resource $ws_1     i3.ws1 		"1: Organize"
+set_from_resource $ws_2     i3.ws2 		"2: Explore"
+set_from_resource $ws_3     i3.ws3 		"3: Edit"
+set_from_resource $ws_4     i3.ws4 		"4: Code"
+set_from_resource $ws_5 	i3.ws5 		"5: Play"
+set_from_resource $ws_6 	i3.ws6 		"6: Draw"
+set_from_resource $ws_7 	i3.ws7 		"7: News"
 set_from_resource $ws_8 	i3.ws8 		"8: VBox"
 set_from_resource $ws_9 	i3.ws9 		"9: JAV"
 set_from_resource $ws_10 	i3.ws10 	"10: IR"
@@ -206,7 +206,7 @@ set $ws_empty 			"Desktop"
 assign [class="(?i)Atom"] 		workspace $ws_3
 assign [class="(?i)gitkraken"] 	workspace $ws_13
 assign [class="(?i)Deluge"] 	workspace $ws_22
-assign [class="(?i)XnView"] 	workspace $ws_10
+#assign [class="(?i)XnView"] 	workspace $ws_10
 #assign [class="(?i)Mpv"] and title="(?i).*[A-Z][A-Z][A-Z]-[0-9][0-9].*"] workspace $ws_10
 #for_window [class="(?i).*Mpv.*"] and title="(?i).*[A-Z][A-Z][A-Z]-[0-9][0-9].*"] move window to workspace $ws_10
 #for_window [class="(?i).*mpc.*" and title="(?i).*[A-Z][A-Z][A-Z]-[0-9][0-9].*"] move window to workspace $ws_10
