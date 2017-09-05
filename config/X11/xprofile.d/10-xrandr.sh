@@ -23,7 +23,7 @@ xrandr --output HDMI-0 --left-of DP-0       # Left Monitor
 xrandr --output HDMI-0 --pos 0x500       	# Shift the screen down a bit so mouse is more natural transitioning
 xrandr --output HDMI-1 --right-of DP-0      # Right Monitor
 xrandr --output HDMI-1 --rotate left        # Rotate into Portrait Mode
-
+#xrandr --output DP-0   --dpi 250
 # xrandr 	--output DP-0   --primary \
 # 		--output HDMI-0 --left-of DP-0 \
 # 		--output HDMI-0 --pos 0x500 \
