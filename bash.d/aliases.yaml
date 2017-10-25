@@ -155,6 +155,17 @@ code.git:
     gsu:             git submodule update
     gclone:          git clone -v --progress
 
+########################################
+mining:
+########################################
+    mine.eth2:   ethminer -G
+                    -F http://eth1.nanopool.org:8888/0x233024aa5be71a4d3aa88d286d544c9e99747d2d 
+                    -O 0x233024aa5be71a4d3aa88d286d544c9e99747d2d.paladin/david.wiedenmann@gmail.com
+    mine.eth:   ethminer
+                    --farm-recheck 200 -G 
+                    -S eth-eu1.nanopool.org:9999 
+                    -FS eth-eu2.nanopool.org:9999
+                    -O 0x233024aa5be71a4d3aa88d286d544c9e99747d2d.paladin/david.wiedenmann@gmail.com
 
 
 ########################################

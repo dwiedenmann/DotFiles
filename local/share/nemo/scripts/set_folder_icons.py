@@ -13,8 +13,6 @@ ext = ["jpg", "jpeg", "png", "gif", "icns", "ico"]
 # ---
 
 # retrieve the path of the targeted folder
-#current = "/media/JAV/Test"
-#current = "/media/MediaCode/Websites/Blacks On Blondes"
 #current = "/media/MediaCode/Test"
 current = os.getenv("NEMO_SCRIPT_CURRENT_URI").replace("file://", "").replace("%20", " ")
 #current = os.getenv("NAUTILUS_SCRIPT_CURRENT_URI").replace("file://", "").replace("%20", " ")
@@ -48,9 +46,21 @@ for root, dirs, files in os.walk(dr):
         except ValueError:
             pass
         else:
+              jpg = os.path.abspath(os.path.join(folder, first))
+              icon = os.path.abspath(os.path.join(folder, "folder.ico"))
+#              cmd = ["convert", first, " -resize x16 -gravity center -crop 16x16+0+0 -flatten -colors 256 -background transparent output/", icon]
+              cmd = ["convert", 
+                     "-resize", "x128", 
+                     "-colors", "256", 
+                     jpg, icon]
+              #print (cmd)
+              subprocess.Popen(cmd)
+              # cmd = ["gvfs-set-attribute", "-t", "string",
+              #   os.path.abspath(folder), "metadata::custom-icon",
+              #   "file://"+os.path.abspath(os.path.join(folder, first))]
               cmd = ["gvfs-set-attribute", "-t", "string",
                 os.path.abspath(folder), "metadata::custom-icon",
-                "file://"+os.path.abspath(os.path.join(folder, first))]
+                "file://"+icon]
               subprocess.Popen(cmd)
               print(cmd)
 #

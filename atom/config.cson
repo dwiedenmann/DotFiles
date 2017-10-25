@@ -28,7 +28,7 @@
       "base16-syntax"
     ]
   editor:
-    fontSize: 25
+    fontSize: 24
   "exception-reporting":
     userId: "eef5ee5e-8390-e87d-4011-dee333f9409f"
   linter:

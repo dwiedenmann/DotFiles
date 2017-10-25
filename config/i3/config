@@ -189,7 +189,7 @@ set_from_resource $ws_25	i3.ws25 	"25: R5"
 set_from_resource $ws_26	i3.ws26 	"26: R6"
 set_from_resource $ws_27	i3.ws27 	"27: R7"
 set_from_resource $ws_28	i3.ws28 	"28: R8"
-set_from_resource $ws_29	i3.ws29 	"29: R9"
+set_from_resource $ws_29	i3.ws29 	"29: Coins"
 set_from_resource $ws_30	i3.ws30 	"30: R0"
 
 set $ws_empty 			"Desktop"
@@ -442,6 +442,7 @@ for_window [class="(?i)VirtualBox" title="(?i)[Running] - Oracle VM VirtualBox$"
 # VBoxManage controlvm "Windows" setvideomodehint 2560 1440 24
 # VBoxManage controlvm "Windows" setvideomodehint 3200 1800 24
 # VBoxManage controlvm "Windows" setvideomodehint 3800 2000 24 #with gaps and both polybars i3 gives 2830x2060
+# You can go to File/Preferences/Display and set a Hint display size
 
 
 ########################################################################################################################
@@ -616,24 +617,6 @@ set_from_resource $base0D color13 #8b56bf
 set_from_resource $base0E color14 #bf568b
 set_from_resource $base0F color15 #bf5656
 
-# Basic bar configuration using the Base16 variables.
-#bar {
-	#status_command i3status
-#
-	#colors {
-		#background $base00
-		#separator  $base01
-		#statusline $base04
-#
-		## State             Border  BG      Text
-		#focused_workspace   $base05 $base0D $base00
-		#active_workspace    $base05 $base03 $base00
-		#inactive_workspace  $base03 $base01 $base05
-		#urgent_workspace    $base08 $base08 $base00
-		#binding_mode        $base00 $base0A $base00
-	#}
-#}
-
 # https://i3wm.org/docs/userguide.html#_changing_colors
 # Basic color configuration using the Base16 variables for windows and borders.
 # class                 border  backgr. text    indicator child_border
@@ -652,45 +635,6 @@ client.background       $base00
 
 # Hide/show the bar
 bindsym $mod+shift+p bar mode toggle
-
-## Primary monitor
-#bar {
-	## Enable rgba colors & transparency (i3-gaps)
-	#i3bar_command   i3bar -t
-	#output          $monitor1
-	#position        top
-	#height          24
-	#status_command  i3blocks -c "$i3/i3bar_blocks"
-	##status_command  i3status
-	#position        top    
-	#tray_output     $monitor1
-	#tray_padding    3
-	#colors {
-		#background          $bg00
-		#statusline          $sl00
-		#separator           $inactive_txt00
-		#focused_workspace   $blue00         $blueEE     $focused_txt
-		#inactive_workspace  $bg_light00     $bg_light00 $inactive_txt
-		#urgent_workspace    $red00          $redEE      $focused_txt
-	#}
-#}
-#bar {
-	#i3bar_command   i3bar -t
-	#output          $monitor2
-	#position        top
-	#height          24
-	#status_command  conky -c "$i3/i3bar_conky"
-	#tray_output     none
-	#colors {
-		#background          $bg00
-		#statusline          $sl00
-		#separator           $inactive_txt00
-		#focused_workspace   $blue00         $blueEE     $focused_txt
-		#inactive_workspace  $bg_light00     $bg_light00 $inactive_txt
-		#urgent_workspace    $red00          $redEE      $focused_txt
-	#}
-#}
-
 
 ########################################################################################################################
 # Exec Bindings (i3 Related)
@@ -734,7 +678,7 @@ bindsym $mod+r $execnsi "rofi -show run"
 #bindsym $mod+r $execnsi "rofi -show run -padding $(($(xwininfo -id $(xdotool getactivewindow) | awk '/Width/ { print $2}')/5))"
 #bindsym $mod+r $execnsi "rofi -show run -padding $(($(xwininfo -root | awk '/Height/ { print $2}')/10))"
 #bindsym $mod+r $execnsi "rofi -show run -padding $(($(xwininfo -root |awk '/Height/ { h = $2}; /Width/ {w = $2}; END {if (h > w) print w; else print h;}')/5))"
- #awk 'min=="" || $1 < min {min=$1} END{ print min}' FS="|" rank.txt
+#awk 'min=="" || $1 < min {min=$1} END{ print min}' FS="|" rank.txt
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -754,16 +698,12 @@ bindsym $mod+r $execnsi "rofi -show run"
 #set $pactl_increase exec pactl set-sink-volume 0 '+5%' && pkill -RTMIN+1 i3blocks
 #set $pactl_mute     exec pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks
 
-
-# increase sound volume
-bindsym XF86AudioRaiseVolume    $execnsi    pactl     set-sink-volume @DEFAULT_SINK@ +2.5%
-# decrease sound volume
-bindsym XF86AudioLowerVolume    $execnsi    pactl     set-sink-volume @DEFAULT_SINK@ -2.5%
-# mute sound
-bindsym XF86AudioMute           $execnsi    pactl     set-sink-mute   @DEFAULT_SINK@ toggle
 # Media player controls
+bindsym XF86AudioRaiseVolume    $execnsi    pactl     set-sink-volume @DEFAULT_SINK@ +2.5%
+bindsym XF86AudioLowerVolume    $execnsi    pactl     set-sink-volume @DEFAULT_SINK@ -2.5%
+bindsym XF86AudioMute           $execnsi    pactl     set-sink-mute   @DEFAULT_SINK@ toggle
 bindsym XF86AudioPlay           $execnsi    mpc toggle
-#bindsym XF86AudioPause             $execnsi    mpc pause
+bindsym XF86AudioPause          $execnsi    mpc pause
 bindsym XF86AudioNext           $execnsi    mpc next
 bindsym XF86AudioPrev           $execnsi    mpc previous
 bindsym XF86AudioStop           $execnsi    mpc stop

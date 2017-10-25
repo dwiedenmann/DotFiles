@@ -83,6 +83,7 @@ SESSIONS="$HOME/.config/X11/xprofile.d"
 if [ -d "$SESSIONS" ]; then
   for SESSION in "$SESSIONS"/*; do
 	#echo "$SESSION" >> ~/.xsession-errors 
+	echo "Executing $SESSION"
 	source $SESSION
   done
 fi

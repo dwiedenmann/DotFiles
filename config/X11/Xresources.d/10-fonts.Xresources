@@ -17,7 +17,8 @@
 ! General X Settings
 !---------------------------------------
 
-*dpi:						120
+*dpi:						150
+!*dpi:						120
 
 !=======================================
 ! Fonts
@@ -25,7 +26,7 @@
 
 Xft.antialias: 				true
 Xft.rgba: 					rgba
-!Xft.dpi: 					120
+!Xft.dpi: 					100
 
 
 Xft.hinting: 				true

@@ -1,7 +1,15 @@
 #!/usr/bin/python
-
+########################################################################################################################
+#     _ _____                        __                                  
+#    (_)__  /   _      ______  _____/ /___________  ____ _________  _____
+#   / / /_ <   | | /| / / __ \/ ___/ //_/ ___/ __ \/ __ `/ ___/ _ \/ ___/
+#  / /___/ /   | |/ |/ / /_/ / /  / ,< (__  ) /_/ / /_/ / /__/  __(__  ) 
+# /_//____/    |__/|__/\____/_/  /_/|_/____/ .___/\__,_/\___/\___/____/  
+#                                         /_/      
+#                                         
+#######################################################################################################################
 #======================================================================
-# i3 (Python modfule for configuring i3wm workspaces)
+# i3 (Python module for configuring i3wm workspaces)
 # Copyright (C) 2017 David Wiedenmann
 #
 # This program is free software: you can redistribute it and/or modify
@@ -46,10 +54,6 @@ def main():
 
 	
 	
-	#config.workspaces.setup()
-
-
-
 class Config(object):
 	"""
 	Config Object
@@ -89,13 +93,6 @@ class Config(object):
 
 		# Create a listapps subcommand       
 		parser.add_argument(
-				'--auto', '-a',
-				help 	= 'Open all workspaces flagged w/ autoopen attribute',
-				action 	= 'store_true'
-			)
-
-		# Create a listapps subcommand       
-		parser.add_argument(
 				'--number', '-n',
 				help 	= 'Open workspace with user supplied argument',
 				nargs 	= '+'
@@ -103,9 +100,23 @@ class Config(object):
 
 		# Create a listapps subcommand       
 		parser.add_argument(
+				'--auto', '-a',
+				help 	= 'Open all workspaces flagged w/ autoopen attribute',
+				action 	= 'store_true'
+			)
+
+		# Create a listapps subcommand       
+		parser.add_argument(
 				'--save', '-s',
-				help 	= 'Save workspace with user supplied argument',
+				help 	= 'Save i3 layout JSON for workspace',
 				nargs 	= '*'
+			)
+
+		# Create a listapps subcommand       
+		parser.add_argument(
+				'--generate', '-g',
+				help 	= 'Generate i3 config workspace keybinds and names',
+				action 	= 'store_true'
 			)
 
 		# If called with no arguments provide help
@@ -124,6 +135,10 @@ class Config(object):
 		# Open Current workspace
 		elif options.current == True:
 			self.workspaces.openCurrent()
+
+		# generate i3 Workspace Config
+		elif options.generate == True:
+			self.workspaces.generateConfig()
 
 		# Open Selected workspace(s)
 		elif options.number  != None:
@@ -175,13 +190,6 @@ class Programs(InheritDb):
 
 class Workspaces(InheritDb):
 
-	def setup(self):
-		for k, v in self._storage.items():
-			workspace = Workspace(k, v)	
-			workspace.config = self.config
-			setupcmd = workspace.setup()
-			print(setupcmd)
-
 	def openOne(self, arg):
 		"""
 		Open/Launch a single workspace
@@ -222,7 +230,43 @@ class Workspaces(InheritDb):
 		print(ws)
 		self.openOne(str(ws))
 
+	def configSetOutput(self):
+		setupcmd = ""
+		for k, v in self._storage.items():
+			workspace = Workspace(k, v)	
+			workspace.config = self.config
+			setupcmd += workspace.configSetOutput()
+		return setupcmd
 
+	def configBindFocus(self):
+		setupcmd = ""
+		for k, v in self._storage.items():
+			workspace = Workspace(k, v)	
+			workspace.config = self.config
+			setupcmd += workspace.configBindFocus()
+		return setupcmd
+
+	def configBindMove(self):
+		setupcmd = ""
+		for k, v in self._storage.items():
+			workspace = Workspace(k, v)	
+			workspace.config = self.config
+			setupcmd += workspace.configBindMove()
+		return setupcmd
+
+	def generateConfig(self):
+		print (self.configSetOutput())
+		print (self.configBindFocus())
+		print (self.configBindMove())
+		# for k, v in self._storage.items():
+		# 	workspace = Workspace(k, v)	
+		# 	workspace.config = self.config
+		# 	setupcmd = ""
+		# 	setupcmd += workspace.configSetOutput()
+		# 	setupcmd += workspace.configBindFocus()
+		# 	setupcmd += workspace.configBindMove()
+			
+		# 	print(setupcmd)
 
 class Workspace(object):
 	"""
@@ -346,15 +390,14 @@ class Workspace(object):
 		str = pprint.pformat(self.workspaceValue, indent = 4, width = 1)
 		return str
 
-	def setup(self):
-		cmd = ""
-		# Change Workspace
-		cmd = cmd + "bindsym {0}+{1} workspace \"{2}\";\n".format("$mod", self.numberMod10, self.name)
-		# Set output
-		cmd = cmd + "workspace \"{0}\" output {1};\n".format(self.name, self.config.screens[self.screen]["device"])
-		# Move Container
-		cmd = cmd + "bindsym {0}+{1}+{2} move container to workspace \"{3}\";\n".format("$mod", self.config.screens[self.screen]["modifier"], self.numberMod10, self.name)
-		return cmd
+	def configSetOutput(self):
+		return "workspace \"{0}\" output {1}\n".format(self.name, self.config.screens[self.screen]["device"])
+
+	def configBindFocus(self):
+		return "bindsym {0}+{1} workspace \"{2}\"\n".format("$mod", self.numberMod10, self.name)
+
+	def configBindMove(self):
+		return "bindsym {0}+{1}+{2} move container to workspace \"{3}\"\n".format("$mod", self.config.screens[self.screen]["modifier"], self.numberMod10, self.name)
 
 
 """
